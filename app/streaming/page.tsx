@@ -94,7 +94,7 @@ export default function Vision2() {
   const [playing,     setPlaying]   = useState(false);
   const [progress,    setProg]      = useState(0);
   const [volume,      setVol]       = useState(0.8);
-  const [liked,       setLiked]     = useState(new Set([2]));
+  const [liked,       setLiked]     = useState<Set<number>>(new Set([2]));
   const [monStep,     setMonStep]   = useState(1);
   const [monPlan,     setMonPlan]   = useState(PLANS[0]);
   const [donAmt,      setDonAmt]    = useState(5);
@@ -102,7 +102,7 @@ export default function Vision2() {
   const [payMode,     setPayMode]   = useState("card");
   const [cardData,    setCard]      = useState({num:"",exp:"",cvc:"",name:""});
   const [processing,  setProc]      = useState(false);
-  const [mySupports,  setMyS]       = useState(new Set([2]));
+  const [mySupports,  setMyS]       = useState<Set<number>>(new Set([2]));
   const [successData, setSD]        = useState<any>(null);
   const [notifs,      setNotifs]    = useState(NOTIFS_INIT);
   const [editingProfile,setEditP]   = useState(false);
@@ -131,7 +131,7 @@ export default function Vision2() {
   const play  = (t:any)=>{ setTrack(t); setProg(0); setPlaying(true); };
   const prev  = ()=>{ const i=TRACKS.findIndex(t=>t.id===currentTrack.id); play(TRACKS[(i-1+TRACKS.length)%TRACKS.length]); };
   const next  = ()=>{ const i=TRACKS.findIndex(t=>t.id===currentTrack.id); play(TRACKS[(i+1)%TRACKS.length]); };
-  const toggleLike = (id:number)=>setLiked((s:any)=>{const n=new Set(s);n.has(id)?n.delete(id):n.add(id);return n;});
+  const toggleLike = (id:number)=>setLiked((s:Set<number>)=>{const n=new Set(s);n.has(id)?n.delete(id):n.add(id);return n;});
   const nav = (p:string,sub:string|null=null,artist:any=null)=>{ setPage(p); setSubPage(sub); if(artist) setFA(artist); };
   const startSupport   = (a:any)=>{ setFA(a); setMonStep(1); setCustomDon(""); nav("monetisation","support",a); };
   const startSubscribe = (a:any)=>{ setFA(a); setMonStep(1); setMonPlan(PLANS[0]); nav("monetisation","subscribe",a); };
@@ -141,7 +141,7 @@ export default function Vision2() {
       setProc(false);
       const isSubscribe = subPage==="subscribe";
       setSD({ artist:focusArtist, amount:isSubscribe?monPlan.price:(customDon?Number(customDon):donAmt), type:isSubscribe?"abonnement":"don", plan:isSubscribe?monPlan:null });
-      setMyS((s:any)=>new Set([...s,focusArtist.id]));
+      setMyS((s:Set<number>)=>new Set([...s,focusArtist.id]));
       setSubPage("success");
     },2000);
   };
