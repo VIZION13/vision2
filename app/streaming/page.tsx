@@ -409,7 +409,7 @@ function SuccessView({data,onBack}:any) {
 
 // ─── MY SPACE ─────────────────────────────────────────────────────────────────
 function MySpacePage({tracks,onUpload,onPlay,monthlyRev}:any) {
-  const fileRef=useRef<any>();
+  const fileRef=useRef<any>(null);
   const maxRev=Math.max(...monthlyRev.map((m:any)=>m.v));
   return (
     <div style={{animation:"fadeUp .4s ease both"}}>
@@ -429,8 +429,8 @@ function MySpacePage({tracks,onUpload,onPlay,monthlyRev}:any) {
 
 // ─── PROFILE ──────────────────────────────────────────────────────────────────
 function ProfilePage({profile,draft,setDraft,editing,setEditing,saved,onSave,onCancel}:any) {
-  const avatarRef=useRef<any>();
-  const bannerRef=useRef<any>();
+  const avatarRef=useRef<any>(null);
+  const bannerRef=useRef<any>(null);
   const data=editing?draft:profile;
   return (
     <div style={{animation:"fadeUp .4s ease both"}}>
