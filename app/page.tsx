@@ -8,7 +8,7 @@ const C = {
 };
 
 const FEATURES = [
-  { icon:"💸", title:"Dons directs",        desc:"Tes fans te soutiennent à partir de 1€. 100% te revient.", color:C.mint   },
+  { icon:"💸", title:"Dons directs",        desc:"Tes fans te soutiennent à partir de 1€. 90% te revient.", color:C.mint   },
   { icon:"⭐", title:"Abonnements fans",    desc:"Fan, Super Fan, VIP. Des revenus récurrents chaque mois.", color:C.purple },
   { icon:"🎵", title:"Streaming libre",     desc:"Ta musique accessible à tous, gratuitement.",              color:C.gold   },
   { icon:"📊", title:"Dashboard revenus",   desc:"Suis tes écoutes et tes revenus en temps réel.",           color:C.mint   },
@@ -18,7 +18,7 @@ const FEATURES = [
 
 const FAQS = [
   { q:"C'est quoi Vision 2.0 ?",                   a:"Une plateforme de streaming créée pour les artistes en développement. Tu partages ta musique, reçois des dons et des abonnements fans — tout en gardant le contrôle." },
-  { q:"Combien Vision 2.0 prend de commission ?",  a:"0% sur les dons. 10% sur les abonnements fans. C'est tout. Spotify prend 70%, nous prenons 10% seulement." },
+  { q:"Combien Vision 2.0 prend de commission ?",  a:"10% sur les dons. 10% sur les abonnements fans. C'est tout. Spotify prend 70%, nous prenons 10% seulement." },
   { q:"Comment sont versés les revenus ?",         a:"Via Stripe Connect. Tu t'inscris avec ton IBAN, et les paiements sont virés directement sur ton compte bancaire." },
   { q:"Faut-il avoir des fans pour commencer ?",   a:"Non. Tu crées ton profil et uploades ta musique dès aujourd'hui. La bêta est l'occasion de construire ta première communauté." },
 ];
@@ -111,7 +111,7 @@ export default function Page() {
 
           {/* Stats */}
           <div style={{display:"flex",justifyContent:"center",marginTop:64,borderTop:`1px solid ${C.border}`,paddingTop:40,gap:0}}>
-            {[["0%","commission sur les dons"],["90%","des revenus abonnements"],["100%","gratuit pour démarrer"]].map(([v,l],i)=>(
+            {[["10%","commission sur les dons"],["90%","des revenus abonnements"],["100%","gratuit pour démarrer"]].map(([v,l],i)=>(
               <div key={i} style={{flex:1,padding:"0 20px",borderRight:i<2?`1px solid ${C.border}`:"none",maxWidth:200}}>
                 <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:32,background:`linear-gradient(135deg,${C.mint},${C.purple})`,WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",marginBottom:4}}>{v}</div>
                 <div style={{fontSize:13,color:C.muted}}>{l}</div>
@@ -145,7 +145,7 @@ export default function Page() {
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
               {[
                 { label:"Spotify", items:["0.003€ par stream","Seuil minimum d'écoutes","0 lien direct avec tes fans","Algorithme opaque","Commission : 70%"], bad:true },
-                { label:"Vision 2.0", items:["Dons directs : 100% te revient","Premier fan = premier euro","Lien direct avec ta communauté","Tu contrôles ta visibilité","Commission : 0% dons, 10% abos"], bad:false },
+                { label:"Vision 2.0", items:["Dons directs : 90% te revient","Premier fan = premier euro","Lien direct avec ta communauté","Tu contrôles ta visibilité","Commission : 10% dons, 10% abos"], bad:false },
               ].map((col,i)=>(
                 <div key={i} style={{padding:"24px",borderRadius:18,background:col.bad?"rgba(248,113,113,.05)":`${C.mint}08`,border:`1.5px solid ${col.bad?"rgba(248,113,113,.2)":`${C.mint}33`}`}}>
                   <div style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:18,marginBottom:16,color:col.bad?"#F87171":C.mint}}>{col.label}</div>
