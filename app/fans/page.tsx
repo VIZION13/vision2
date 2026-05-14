@@ -24,7 +24,7 @@ input:focus{outline:none;border-color:#6ECFAA !important;}
 @keyframes spin{to{transform:rotate(360deg)}}
 `;
 
-export default function FansPage() {
+export default function TeamPage() {
   const [artists,   setArtists]   = useState<any[]>([]);
   const [followed,  setFollowed]  = useState<Set<string>>(new Set());
   const [tracks,    setTracks]    = useState<any[]>([]);

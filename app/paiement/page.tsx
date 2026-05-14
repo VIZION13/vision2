@@ -25,9 +25,9 @@ input:focus{outline:none;border-color:#6ECFAA !important;}
 `;
 
 const PLANS = [
-  { id:"fan",   label:"Fan",       price:3,  icon:"🎵", color:C.mint,   perks:["Accès aux exclusivités","Badge fan","Newsletter privée"] },
-  { id:"super", label:"Super Fan", price:7,  icon:"⭐", color:C.purple, perks:["Tout Fan","Stems & instrumentaux","Sessions Q&A","Crédits"] },
-  { id:"vip",   label:"VIP",       price:15, icon:"👑", color:C.gold,   perks:["Tout Super Fan","Appel vidéo trimestriel","Merch exclusif","Early release"] },
+  { id:"fan",   label:"Team",       price:3,  icon:"🎵", color:C.mint,   perks:["Accès aux exclusivités","Badge fan","Newsletter privée"] },
+  { id:"super", label:"Super Team", price:7,  icon:"⭐", color:C.purple, perks:["Tout Team","Stems & instrumentaux","Sessions Q&A","Crédits"] },
+  { id:"vip",   label:"VIP",       price:15, icon:"👑", color:C.gold,   perks:["Tout Super Team","Appel vidéo trimestriel","Merch exclusif","Early release"] },
 ];
 
 export default function StripePage() {
