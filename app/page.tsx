@@ -52,7 +52,7 @@ const TEAM_CONTENT = {
     { label:"Super Team", price:"7€",  color:"#B44FD4", perks:["Clips exclusifs","Sessions Q&A","Crédits dans les titres"], popular:true },
     { label:"VIP",        price:"15€", color:"#F5C842", perks:["Live studio","Appel vidéo","Merch exclusif"] },
   ],
-  planNote:"10% Vision 2.0 · 90% à l'artiste sur chaque abonnement",
+  planNote:"10% Vizion 2.0 · 90% à l'artiste sur chaque abonnement",
 };
 
 const ARTIST_CONTENT = {
@@ -71,14 +71,14 @@ const ARTIST_CONTENT = {
     { icon:"M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12", title:"Upload audio & vidéo", desc:"MP3, WAV, FLAC, MP4. Qualité maximale. Clips, lives, making of.",          color:"#B44FD4" },
     { icon:"M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",        title:"Dépôt SACEM intégré", desc:"Déclare tes titres, auteurs, compositeurs et beatmakers directement.",    color:"#6ECFAA" },
     { icon:"M18 20V10M12 20V4M6 20v-6",                                        title:"Dashboard temps réel",desc:"Revenus, écoutes, abonnés, dons — tout en un coup d'oeil.",                color:"#F5C842" },
-    { icon:"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", title:"Droits proteges",   desc:"Tu es proprietaire. Vision 2.0 prend 10% uniquement sur les revenus.",  color:"#B44FD4" },
+    { icon:"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", title:"Droits proteges",   desc:"Tu es proprietaire. Vizion 2.0 prend 10% uniquement sur les revenus.",  color:"#B44FD4" },
   ],
   plans: [
     { label:"Dons",        price:"0%",     color:"#6ECFAA", perks:["Aucune commission","Paiement immédiat","Stripe Connect"] },
     { label:"Abonnements", price:"10%",    color:"#B44FD4", perks:["90% pour toi","Revenus récurrents","Dashboard complet"], popular:true },
-    { label:"SACEM",       price:"Inclus", color:"#F5C842", perks:["Dépôt via Vision 2.0","Contrat d'édition","Part auteur 100%"] },
+    { label:"SACEM",       price:"Inclus", color:"#F5C842", perks:["Dépôt via Vizion 2.0","Contrat d'édition","Part auteur 100%"] },
   ],
-  planNote:"Vision 2.0 prend 10% uniquement sur les abonnements — 0% sur les dons",
+  planNote:"Vizion 2.0 prend 10% uniquement sur les abonnements — 0% sur les dons",
 };
 
 const ARTISTS = [
@@ -120,7 +120,7 @@ export default function Landing() {
         <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 48px",height:64,background:"rgba(13,13,15,.92)",backdropFilter:"blur(20px)",borderBottom:`1px solid ${C.border}`,position:"sticky",top:0,zIndex:100}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <div style={{width:30,height:30,borderRadius:9,background:`linear-gradient(135deg,${C.mint},${C.purple})`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:14,color:"#fff"}}>V</div>
-            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:16}}>VISION <span style={{color:accent,transition:"color .3s"}}>2.0</span></span>
+            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:16}}>VIZION <span style={{color:accent,transition:"color .3s"}}>2.0</span></span>
           </div>
 
           {/* Switcher */}
@@ -227,7 +227,7 @@ export default function Landing() {
                   <div key={i} style={{padding:"28px",borderRadius:20,background:C.card,border:`1px solid ${C.border}`,textAlign:"center"}}>
                     <div style={{fontSize:12,color:C.muted,marginBottom:12}}>{r.label}</div>
                     <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:34,color:r.color,marginBottom:4}}>{r.rev}</div>
-                    <div style={{fontSize:11,color:C.muted}}>apres 10% Vision 2.0</div>
+                    <div style={{fontSize:11,color:C.muted}}>apres 10% Vizion 2.0</div>
                   </div>
                 ))}
               </div>
@@ -271,7 +271,7 @@ export default function Landing() {
               {mode==="team"?<>Pret a rejoindre<br/><span className="gt">la communaute ?</span></>:<>Pret a lancer<br/><span className="ga">ta musique ?</span></>}
             </h2>
             <p style={{color:C.muted,fontSize:15,lineHeight:1.7,marginBottom:40}}>
-              {mode==="team"?"Rejoins Vision 2.0 gratuitement. Ecoute, decouvre et soutiens tes artistes preferes.":"Rejoins Vision 2.0 gratuitement. Upload ton premier titre et commence a construire ta communaute."}
+              {mode==="team"?"Rejoins Vizion 2.0 gratuitement. Ecoute, decouvre et soutiens tes artistes preferes.":"Rejoins Vizion 2.0 gratuitement. Upload ton premier titre et commence a construire ta communaute."}
             </p>
             {!done ? (
               <div style={{display:"flex",maxWidth:420,margin:"0 auto 16px",borderRadius:14,overflow:"hidden",border:`1px solid ${C.border}`,background:C.card}}>
@@ -293,14 +293,14 @@ export default function Landing() {
         <footer style={{borderTop:`1px solid ${C.border}`,padding:"24px 48px",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:16,background:C.surface}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <div style={{width:26,height:26,borderRadius:7,background:`linear-gradient(135deg,${C.mint},${C.purple})`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,color:"#fff",fontSize:12}}>V</div>
-            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:14}}>VISION <span style={{color:accent,transition:"color .3s"}}>2.0</span></span>
+            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:14}}>VIZION <span style={{color:accent,transition:"color .3s"}}>2.0</span></span>
           </div>
           <div style={{display:"flex",gap:24}}>
             {[["Explorer","/streaming"],["Se connecter","/auth"],["CGU","/cgu"],["contact@vision2.music","mailto:contact@vision2.music"]].map(([lbl,href])=>(
               <a key={lbl} href={href} style={{fontSize:12,color:C.muted,transition:"color .2s"}} onMouseEnter={e=>e.currentTarget.style.color=accent} onMouseLeave={e=>e.currentTarget.style.color=C.muted}>{lbl}</a>
             ))}
           </div>
-          <div style={{fontSize:12,color:C.muted}}>2025 Vision 2.0</div>
+          <div style={{fontSize:12,color:C.muted}}>2025 Vizion 2.0</div>
         </footer>
 
       </div>

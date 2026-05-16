@@ -126,7 +126,7 @@ export default function AuthPage() {
             boxShadow:`0 8px 24px ${C.mint}44`,
           }}>V</div>
           <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:22,letterSpacing:.5}}>
-            VISION <span style={{color:C.mint}}>2.0</span>
+            VIZION <span style={{color:C.mint}}>2.0</span>
           </div>
           <div style={{color:C.muted,fontSize:13,marginTop:4}}>
             {mode==="login" ? "Content de te revoir 👋" : "Rejoins la communauté 🎵"}

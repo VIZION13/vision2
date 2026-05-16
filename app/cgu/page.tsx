@@ -18,52 +18,52 @@ const SECTIONS = [
   {
     title: "1. Objet et acceptation",
     content: [
-      "Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation de la plateforme Vision 2.0, accessible à l'adresse vizion2-nu.vercel.app et ses sous-domaines.",
-      "Vision 2.0 est une plateforme de streaming musical dédiée aux artistes en développement, leur permettant de diffuser leur musique, de recevoir des dons et de proposer des abonnements à leurs fans.",
+      "Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation de la plateforme Vizion 2.0, accessible à l'adresse vizion2-nu.vercel.app et ses sous-domaines.",
+      "Vizion 2.0 est une plateforme de streaming musical dédiée aux artistes en développement, leur permettant de diffuser leur musique, de recevoir des dons et de proposer des abonnements à leurs fans.",
       "En accédant à la plateforme, en créant un compte ou en utilisant l'un quelconque de nos services, vous acceptez sans réserve les présentes CGU. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser nos services.",
-      "Vision 2.0 se réserve le droit de modifier ces CGU à tout moment. Les modifications entrent en vigueur dès leur publication sur la plateforme. Il vous appartient de consulter régulièrement les CGU."
+      "Vizion 2.0 se réserve le droit de modifier ces CGU à tout moment. Les modifications entrent en vigueur dès leur publication sur la plateforme. Il vous appartient de consulter régulièrement les CGU."
     ]
   },
   {
     title: "2. Description des services",
     content: [
-      "Vision 2.0 propose les services suivants :",
+      "Vizion 2.0 propose les services suivants :",
       "• Streaming musical : écoute gratuite et illimitée des titres publiés par les artistes inscrits sur la plateforme.",
       "• Espace artiste : création d'un profil, upload de titres musicaux, gestion de catalogue, accès aux statistiques d'écoute et de revenus.",
-      "• Système de dons : les fans peuvent effectuer des dons libres à partir de 1 € directement aux artistes. Vision 2.0 ne prélève aucune commission sur les dons.",
-      "• Abonnements fans : les fans peuvent souscrire à des abonnements mensuels (plan Fan à 3 €, Super Fan à 7 €, VIP à 15 €) pour accéder à des contenus exclusifs. Vision 2.0 prélève une commission de 10 % sur ces abonnements.",
+      "• Système de dons : les fans peuvent effectuer des dons libres à partir de 1 € directement aux artistes. Vizion 2.0 ne prélève aucune commission sur les dons.",
+      "• Abonnements fans : les fans peuvent souscrire à des abonnements mensuels (plan Fan à 3 €, Super Fan à 7 €, VIP à 15 €) pour accéder à des contenus exclusifs. Vizion 2.0 prélève une commission de 10 % sur ces abonnements.",
       "• Dashboard artiste : suivi en temps réel des écoutes, des revenus, des abonnés et des transactions.",
-      "Vision 2.0 se réserve le droit de modifier, suspendre ou interrompre tout ou partie de ses services à tout moment, sans préavis ni indemnité."
+      "Vizion 2.0 se réserve le droit de modifier, suspendre ou interrompre tout ou partie de ses services à tout moment, sans préavis ni indemnité."
     ]
   },
   {
     title: "3. Inscription et comptes utilisateurs",
     content: [
-      "L'accès à certaines fonctionnalités de Vision 2.0 nécessite la création d'un compte. L'inscription est gratuite et ouverte à toute personne physique majeure ou toute personne morale.",
+      "L'accès à certaines fonctionnalités de Vizion 2.0 nécessite la création d'un compte. L'inscription est gratuite et ouverte à toute personne physique majeure ou toute personne morale.",
       "Lors de l'inscription, vous vous engagez à fournir des informations exactes, complètes et à jour. Vous êtes responsable de la confidentialité de vos identifiants de connexion.",
       "Deux types de comptes sont disponibles :",
       "• Compte Fan : permet d'écouter de la musique, de suivre des artistes, d'effectuer des dons et de souscrire à des abonnements.",
       "• Compte Artiste : offre toutes les fonctionnalités du compte fan, plus la possibilité d'uploader des titres, de gérer un catalogue et de recevoir des paiements via Stripe Connect.",
-      "Vision 2.0 se réserve le droit de suspendre ou supprimer tout compte en cas de violation des présentes CGU, sans préavis ni indemnité."
+      "Vizion 2.0 se réserve le droit de suspendre ou supprimer tout compte en cas de violation des présentes CGU, sans préavis ni indemnité."
     ]
   },
   {
     title: "4. Droits de propriété intellectuelle et licences musicales",
     content: [
       "4.1 — Garantie de l'artiste",
-      "En uploadant un contenu musical sur Vision 2.0, l'artiste déclare et garantit expressément :",
+      "En uploadant un contenu musical sur Vizion 2.0, l'artiste déclare et garantit expressément :",
       "• Être le titulaire de l'intégralité des droits de propriété intellectuelle sur les œuvres uploadées (droits d'auteur, droits voisins, droits de producteur), ou disposer de toutes les autorisations nécessaires de la part des titulaires de droits.",
-      "• Que l'upload et la diffusion de ses œuvres sur Vision 2.0 ne constitue pas une violation des droits de tiers, notamment en matière de droit d'auteur, de droits voisins ou de droits de marque.",
+      "• Que l'upload et la diffusion de ses œuvres sur Vizion 2.0 ne constitue pas une violation des droits de tiers, notamment en matière de droit d'auteur, de droits voisins ou de droits de marque.",
       "• Que ses œuvres ne contiennent pas d'échantillons (samples) non autorisés ou de contenus protégés appartenant à des tiers sans avoir obtenu les autorisations nécessaires.",
-      "4.2 — Licence accordée à Vision 2.0",
-      "En uploadant un contenu musical, l'artiste accorde à Vision 2.0 une licence non exclusive, mondiale, gratuite, pour la durée de protection des droits d'auteur, afin de :",
-      "• Diffuser, reproduire et mettre à disposition les œuvres sur la plateforme Vision 2.0 et ses applications.",
+      "4.2 — Licence accordée à Vizion 2.0",
+      "En uploadant un contenu musical, l'artiste accorde à Vizion 2.0 une licence non exclusive, mondiale, gratuite, pour la durée de protection des droits d'auteur, afin de :",
+      "• Diffuser, reproduire et mettre à disposition les œuvres sur la plateforme Vizion 2.0 et ses applications.",
       "• Créer des aperçus (previews) des œuvres à des fins promotionnelles.",
       "• Utiliser le nom et l'image de l'artiste dans le cadre de la promotion de la plateforme.",
       "Cette licence prend fin dès la suppression du contenu par l'artiste ou la résiliation de son compte.",
       "4.3 — Organismes de gestion collective",
-      "Les artistes inscrits sur Vision 2.0 restent seuls responsables de leurs obligations vis-à-vis des organismes de gestion collective (SACEM, SCPP, SPPF, ADAMI, SPEDIDAM ou équivalents internationaux). Vision 2.0 n'assume pas la responsabilité du paiement des redevances dues à ces organismes au titre des œuvres diffusées.",
-      "Vision 2.0 s'engage à coopérer avec les organismes de gestion collective compétents et à déclarer les diffusions conformément aux obligations légales applicables.",
+      "Les artistes inscrits sur Vizion 2.0 restent seuls responsables de leurs obligations vis-à-vis des organismes de gestion collective (SACEM, SCPP, SPPF, ADAMI, SPEDIDAM ou équivalents internationaux). Vizion 2.0 n'assume pas la responsabilité du paiement des redevances dues à ces organismes au titre des œuvres diffusées.",
+      "Vizion 2.0 s'engage à coopérer avec les organismes de gestion collective compétents et à déclarer les diffusions conformément aux obligations légales applicables.",
       "4.4 — Signalement de violations",
       "Toute personne estimant que son droit d'auteur est violé peut adresser une notification à : contact@vision2.music, conformément aux procédures applicables (DMCA, Directive droit d'auteur EU 2019/790)."
     ]
@@ -71,39 +71,39 @@ const SECTIONS = [
   {
     title: "5. Règles de conduite et contenus interdits",
     content: [
-      "Il est strictement interdit d'uploader ou de diffuser sur Vision 2.0 :",
+      "Il est strictement interdit d'uploader ou de diffuser sur Vizion 2.0 :",
       "• Des œuvres dont vous ne détenez pas les droits ou pour lesquelles vous n'avez pas obtenu les autorisations nécessaires.",
       "• Des contenus portant atteinte aux droits de tiers : contrefaçon, plagiat, samples non autorisés.",
       "• Des contenus à caractère illicite : incitation à la haine, discrimination, violence, pornographie, contenus pédopornographiques.",
       "• Des contenus portant atteinte à la vie privée ou à l'image de tiers sans leur consentement.",
       "• Des contenus faisant la promotion d'activités illégales.",
       "• Des contenus trompeurs ou frauduleux.",
-      "Vision 2.0 se réserve le droit de supprimer tout contenu ne respectant pas ces règles, sans préavis, et de suspendre ou résilier le compte de l'utilisateur contrevenant."
+      "Vizion 2.0 se réserve le droit de supprimer tout contenu ne respectant pas ces règles, sans préavis, et de suspendre ou résilier le compte de l'utilisateur contrevenant."
     ]
   },
   {
     title: "6. Conditions financières et paiements",
     content: [
       "6.1 — Dons",
-      "Les dons effectués par les fans sont reversés intégralement à l'artiste. Vision 2.0 ne prélève aucune commission sur les dons. Les frais de traitement bancaire de Stripe (environ 1,4 % + 0,25 € par transaction pour les cartes européennes) sont à la charge de l'artiste.",
+      "Les dons effectués par les fans sont reversés intégralement à l'artiste. Vizion 2.0 ne prélève aucune commission sur les dons. Les frais de traitement bancaire de Stripe (environ 1,4 % + 0,25 € par transaction pour les cartes européennes) sont à la charge de l'artiste.",
       "6.2 — Abonnements",
-      "Vision 2.0 prélève une commission de 10 % sur le montant des abonnements fans. Les 90 % restants sont reversés à l'artiste après déduction des frais bancaires Stripe.",
+      "Vizion 2.0 prélève une commission de 10 % sur le montant des abonnements fans. Les 90 % restants sont reversés à l'artiste après déduction des frais bancaires Stripe.",
       "6.3 — Versements",
       "Les paiements sont traités via Stripe Connect. Pour recevoir des paiements, l'artiste doit compléter son inscription Stripe Connect et fournir les informations bancaires requises. Les versements sont effectués selon les conditions de Stripe, généralement sous 2 à 7 jours ouvrés.",
       "6.4 — Remboursements",
       "Les dons ne sont pas remboursables sauf en cas d'erreur manifeste ou de fraude avérée. Les abonnements peuvent être résiliés à tout moment, sans remboursement de la période en cours.",
       "6.5 — Fiscalité",
-      "Chaque utilisateur est responsable de la déclaration et du paiement des impôts et taxes applicables aux revenus perçus via Vision 2.0, conformément à la législation fiscale de son pays de résidence."
+      "Chaque utilisateur est responsable de la déclaration et du paiement des impôts et taxes applicables aux revenus perçus via Vizion 2.0, conformément à la législation fiscale de son pays de résidence."
     ]
   },
   {
     title: "7. Protection des données personnelles (RGPD)",
     content: [
-      "Vision 2.0 collecte et traite vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD - UE 2016/679).",
+      "Vizion 2.0 collecte et traite vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD - UE 2016/679).",
       "7.1 — Données collectées",
       "• Données d'identification : nom, prénom, nom d'artiste, adresse email.",
       "• Données de profil : photo, biographie, genre musical, ville.",
-      "• Données bancaires : traitées exclusivement par Stripe (Vision 2.0 ne stocke aucune donnée bancaire).",
+      "• Données bancaires : traitées exclusivement par Stripe (Vizion 2.0 ne stocke aucune donnée bancaire).",
       "• Données d'usage : historique d'écoutes, interactions, statistiques.",
       "7.2 — Finalités du traitement",
       "• Gestion des comptes utilisateurs et authentification.",
@@ -116,20 +116,20 @@ const SECTIONS = [
       "7.4 — Conservation des données",
       "Les données sont conservées pendant la durée d'utilisation du compte, puis 3 ans après la clôture du compte pour les obligations légales.",
       "7.5 — Sous-traitants",
-      "Vision 2.0 utilise les sous-traitants suivants : Supabase (hébergement des données, UE), Stripe (paiements), Vercel (hébergement de l'application, UE)."
+      "Vizion 2.0 utilise les sous-traitants suivants : Supabase (hébergement des données, UE), Stripe (paiements), Vercel (hébergement de l'application, UE)."
     ]
   },
   {
     title: "8. Limitation de responsabilité",
     content: [
-      "Vision 2.0 est fourni 'en l'état', sans garantie d'aucune sorte, expresse ou implicite.",
-      "Vision 2.0 ne peut être tenu responsable :",
+      "Vizion 2.0 est fourni 'en l'état', sans garantie d'aucune sorte, expresse ou implicite.",
+      "Vizion 2.0 ne peut être tenu responsable :",
       "• Des contenus uploadés par les utilisateurs et de leur conformité aux droits de tiers.",
       "• Des interruptions de service, bugs ou pertes de données.",
       "• Des dommages directs ou indirects résultant de l'utilisation ou de l'impossibilité d'utiliser la plateforme.",
       "• Des litiges entre utilisateurs (artistes et fans).",
       "• Des décisions des organismes de gestion collective concernant les droits des œuvres diffusées.",
-      "La responsabilité de Vision 2.0 est limitée au montant des sommes versées par l'utilisateur au cours des 12 derniers mois."
+      "La responsabilité de Vizion 2.0 est limitée au montant des sommes versées par l'utilisateur au cours des 12 derniers mois."
     ]
   },
   {
@@ -141,7 +141,7 @@ const SECTIONS = [
       "• Les abonnements en cours seront annulés à leur prochaine date de renouvellement.",
       "• Les revenus disponibles vous seront versés selon les conditions Stripe.",
       "• Vos données personnelles seront conservées conformément à notre politique de confidentialité.",
-      "Vision 2.0 peut résilier votre compte en cas de violation des présentes CGU, avec ou sans préavis selon la gravité de la violation."
+      "Vizion 2.0 peut résilier votre compte en cas de violation des présentes CGU, avec ou sans préavis selon la gravité de la violation."
     ]
   },
   {
@@ -166,7 +166,7 @@ export default function CGUPage() {
         <div style={{maxWidth:800,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <div style={{width:28,height:28,borderRadius:8,background:`linear-gradient(135deg,${C.mint},${C.purple})`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:13,color:"#fff"}}>V</div>
-            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15}}>VISION <span style={{color:C.mint}}>2.0</span></span>
+            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15}}>VIZION <span style={{color:C.mint}}>2.0</span></span>
           </div>
           <a href="/" style={{fontSize:13,color:C.muted,textDecoration:"none",padding:"7px 14px",borderRadius:9,border:`1px solid ${C.border}`,transition:"color .2s"}}
             onMouseEnter={e=>(e.currentTarget.style.color=C.mint)}
@@ -197,7 +197,7 @@ export default function CGUPage() {
           <div style={{fontSize:13,color:C.muted,lineHeight:1.8}}>
             • Tu uploades ta propre musique → tu gardes 100% de tes droits<br/>
             • Les dons → 100% pour toi, 0% pour nous<br/>
-            • Les abonnements → 90% pour toi, 10% pour Vision 2.0<br/>
+            • Les abonnements → 90% pour toi, 10% pour Vizion 2.0<br/>
             • Tes données → stockées en Europe, jamais vendues<br/>
             • Tu peux supprimer ton compte à tout moment
           </div>
