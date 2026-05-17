@@ -1,16 +1,15 @@
-"use client";
 import { useState, useRef, useEffect } from "react";
 
 // ─── Palettes ─────────────────────────────────────────────────────────────────
 const TEAM_COLORS = {
   bg:"#0D0D0F", surface:"#141418", card:"#1A1A22", card2:"#20202C",
   border:"#2A2A36", text:"#F0EEF8", muted:"#7A7890",
-  accent:"#6ECFAA", accent2:"#B44FD4", gold:"#F5C842",
+  accent:"#6ECFAA", accent2:"#B44FD4",
 };
 const ARTIST_COLORS = {
   bg:"#0A0A14", surface:"#10101E", card:"#161628", card2:"#1C1C34",
   border:"#252538", text:"#F0EEF8", muted:"#8080A0",
-  accent:"#B44FD4", accent2:"#6ECFAA", gold:"#F5C842",
+  accent:"#B44FD4", accent2:"#6ECFAA",
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -98,7 +97,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 `;
 
 // ─── ROOT ─────────────────────────────────────────────────────────────────────
-export default function Vizion2Unified() {
+export default function Vision2Unified() {
   const [mode,    setMode]   = useState("team");   // "team" | "artist"
   const [menuOpen,setMenu]   = useState(false);
   const [teamTab, setTeamTab]= useState("home");
@@ -221,16 +220,16 @@ export default function Vizion2Unified() {
       {/* ── NAVBAR ── */}
       <nav style={{position:"relative",zIndex:50,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 28px",height:56,background:`${C.surface}f0`,backdropFilter:"blur(20px)",borderBottom:`1px solid ${C.border}`,transition:"all .4s"}}>
 
-        {/* Logo → accueil */}
-        <a href="/" style={{display:"flex",alignItems:"center",gap:10,textDecoration:"none",flexShrink:0}}>
+        {/* Logo */}
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
           <div style={{width:28,height:28,borderRadius:8,background:`linear-gradient(135deg,${TEAM_COLORS.accent},${ARTIST_COLORS.accent})`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:13,color:"#fff"}}>V</div>
-          <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,letterSpacing:.5,color:C.text}}>VIZION <span style={{color:C.accent}}>2.0</span></span>
-        </a>
+          <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,letterSpacing:.5}}>VISION <span style={{color:C.accent}}>2.0</span></span>
+        </div>
 
         {/* Mode tabs — Team nav */}
         {mode==="team" && (
           <div style={{display:"flex",gap:2}}>
-            {[["home","Accueil",<IGrid s={14}/>],["support","Soutenir",<IHeart s={14}/>]].map(([id,lbl,ico])=>(
+            {[["home","Accueil",<IGrid s={14}/>],["discover","Explorer",<ISearch s={14}/>],["support","Soutenir",<IHeart s={14}/>]].map(([id,lbl,ico])=>(
               <button key={id} onClick={()=>setTeamTab(id)} style={{display:"flex",alignItems:"center",gap:6,padding:"6px 14px",borderRadius:9,border:"none",cursor:"pointer",fontSize:12,fontWeight:teamTab===id?700:500,background:teamTab===id?`${C.accent}18`:"transparent",color:teamTab===id?C.accent:C.muted,transition:"all .2s"}}>{ico}{lbl}</button>
             ))}
           </div>
@@ -239,15 +238,14 @@ export default function Vizion2Unified() {
         {/* Mode tabs — Artist nav */}
         {mode==="artist" && (
           <div style={{display:"flex",gap:2}}>
-            {[["upload","Publier",<IUpload s={14}/>],["sacem","SACEM",<IDoc s={14}/>],["dashboard","Dashboard",<IBar s={14}/>]].map(([id,lbl,ico])=>(
+            {[["upload","Publier",<IUpload s={14}/>],["video","Vidéos",<IVideo s={14}/>],["sacem","SACEM",<IDoc s={14}/>],["dashboard","Dashboard",<IBar s={14}/>]].map(([id,lbl,ico])=>(
               <button key={id} onClick={()=>setArtTab(id)} style={{display:"flex",alignItems:"center",gap:6,padding:"6px 14px",borderRadius:9,border:"none",cursor:"pointer",fontSize:12,fontWeight:artTab===id?700:500,background:artTab===id?`${C.accent}18`:"transparent",color:artTab===id?C.accent:C.muted,transition:"all .2s"}}>{ico}{lbl}</button>
             ))}
           </div>
         )}
 
-        {/* Right — switcher + CGU + login + menu */}
+        {/* Right — switcher + login + menu */}
         <div style={{display:"flex",alignItems:"center",gap:8}}>
-          <a href="/cgu" style={{fontSize:11,color:C.muted,textDecoration:"none",padding:"5px 10px",borderRadius:8,border:`1px solid ${C.border}`,transition:"color .2s"}} onMouseEnter={e=>e.currentTarget.style.color=C.accent} onMouseLeave={e=>e.currentTarget.style.color=C.muted}>CGU</a>
           {/* Switcher */}
           <div style={{display:"flex",padding:3,background:C.card,borderRadius:10,border:`1px solid ${C.border}`}}>
             <button onClick={()=>switchMode("team")} style={{display:"flex",alignItems:"center",gap:5,padding:"5px 12px",borderRadius:7,border:"none",cursor:"pointer",fontSize:11,fontWeight:700,background:mode==="team"?`${TEAM_COLORS.accent}22`:"transparent",color:mode==="team"?TEAM_COLORS.accent:C.muted,transition:"all .2s"}}>
@@ -296,154 +294,103 @@ export default function Vizion2Unified() {
 
         {/* ════ TEAM SCREENS ════ */}
 
-        {/* Accueil — sections avec bannières séparatrices */}
+        {/* Home */}
         {mode==="team" && teamTab==="home" && (
-          <div style={{padding:"24px 32px",animation:"fadeUp .35s ease both",maxWidth:1000,margin:"0 auto",width:"100%"}}>
+          <div style={{padding:"28px",animation:"fadeUp .35s ease both"}}>
+            <div style={{marginBottom:28}}>
+              <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:26,marginBottom:4}}>Bonsoir <span style={{color:C.accent}}>·</span></div>
+              <div style={{color:C.muted,fontSize:13}}>Découvre les artistes du moment</div>
+            </div>
 
-            {/* ── Featured ── */}
-            <div style={{borderRadius:18,overflow:"hidden",marginBottom:32,background:`linear-gradient(135deg,${C.card},${C.accent}0a)`,border:`1px solid ${C.border}`,display:"flex",height:140}}>
-              <div style={{position:"relative",width:140,flexShrink:0}}>
+            {/* Featured */}
+            <div style={{borderRadius:20,overflow:"hidden",marginBottom:32,background:`linear-gradient(135deg,${C.card},${C.accent}0a)`,border:`1px solid ${C.border}`,display:"flex",height:160}}>
+              <div style={{position:"relative",width:180,flexShrink:0}}>
                 <img src={ARTISTS[1].cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-                <div style={{position:"absolute",inset:0,background:"linear-gradient(to right,transparent 50%,rgba(26,26,34,1))"}}/>
+                <div style={{position:"absolute",inset:0,background:"linear-gradient(to right,transparent 60%,rgba(26,26,34,1))"}}/>
               </div>
-              <div style={{padding:"18px 22px",display:"flex",flexDirection:"column",justifyContent:"center",flex:1}}>
-                <div style={{fontSize:9,color:C.accent,letterSpacing:2,textTransform:"uppercase",fontWeight:700,marginBottom:4}}>Artiste en vedette</div>
-                <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:18,marginBottom:3}}>{ARTISTS[1].name}</div>
-                <div style={{color:C.muted,fontSize:12,marginBottom:10}}>{ARTISTS[1].genre} · {fmtK(ARTISTS[1].followers)} abonnés</div>
-                <div style={{display:"flex",gap:8}}>
-                  <button className="hvr" onClick={()=>play(TRACKS.find(t=>t.artistId===2)||TRACKS[0])} style={{display:"flex",alignItems:"center",gap:5,padding:"6px 12px",borderRadius:8,border:"none",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",fontWeight:700,fontSize:11,cursor:"pointer"}}><IPlay s={10}/>Écouter</button>
-                  <button className="hvr" onClick={()=>{setArtistSel(ARTISTS[1]);setTeamTab("support");}} style={{display:"flex",alignItems:"center",gap:5,padding:"6px 12px",borderRadius:8,border:`1px solid ${C.accent}44`,background:`${C.accent}12`,color:C.accent,fontWeight:700,fontSize:11,cursor:"pointer"}}><IHeart s={10}/>Soutenir</button>
+              <div style={{padding:"24px 28px",display:"flex",flexDirection:"column",justifyContent:"center",flex:1}}>
+                <div style={{fontSize:10,color:C.accent,letterSpacing:2,textTransform:"uppercase",fontWeight:700,marginBottom:6}}>Artiste en vedette</div>
+                <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:22,marginBottom:4}}>{ARTISTS[1].name}</div>
+                <div style={{color:C.muted,fontSize:12,marginBottom:14}}>{ARTISTS[1].genre} · {fmtK(ARTISTS[1].followers)} abonnés</div>
+                <div style={{display:"flex",gap:10}}>
+                  <button className="hvr" onClick={()=>play(TRACKS.find(t=>t.artistId===2)||TRACKS[0])} style={{display:"flex",alignItems:"center",gap:6,padding:"8px 16px",borderRadius:10,border:"none",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",fontWeight:700,fontSize:12,cursor:"pointer",transition:"all .2s"}}><IPlay s={12}/>Écouter</button>
+                  <button className="hvr" onClick={()=>{setArtistSel(ARTISTS[1]);setTeamTab("support");}} style={{display:"flex",alignItems:"center",gap:6,padding:"8px 16px",borderRadius:10,border:`1px solid ${C.accent}44`,background:`${C.accent}12`,color:C.accent,fontWeight:700,fontSize:12,cursor:"pointer",transition:"all .2s"}}><IHeart s={12}/>Soutenir</button>
                 </div>
               </div>
             </div>
 
-            {/* ── SECTION : Tendances ── */}
-            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
-              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent}44,transparent)`}}/>
-              <span style={{fontSize:11,fontWeight:700,color:C.accent,letterSpacing:1.5,textTransform:"uppercase"}}>Tendances</span>
-              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent}44,transparent)`}}/>
-            </div>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:3,marginBottom:32}}>
+            {/* Tracks */}
+            <SLabel label="Tendances" color={C.accent2} C={C}/>
+            <div style={{display:"flex",flexDirection:"column",gap:2,marginBottom:32}}>
               {TRACKS.map((t,i)=>(
-                <div key={t.id} className="row" onClick={()=>play(t)} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 10px",borderRadius:10,cursor:"pointer",transition:"background .2s",background:track.id===t.id&&playing?`${C.accent}08`:"transparent"}}>
-                  <div style={{width:16,textAlign:"center",fontSize:11,color:track.id===t.id&&playing?C.accent:C.muted,flexShrink:0}}>{track.id===t.id&&playing?<IPlay s={10}/>:i+1}</div>
-                  <div style={{width:32,height:32,borderRadius:8,overflow:"hidden",flexShrink:0,background:C.card}}>
+                <div key={t.id} className="row" onClick={()=>play(t)} style={{display:"flex",alignItems:"center",gap:14,padding:"10px 12px",borderRadius:12,cursor:"pointer",transition:"background .2s",background:track.id===t.id&&playing?`${C.accent}08`:"transparent"}}>
+                  <div style={{width:20,textAlign:"center",fontSize:12,color:track.id===t.id&&playing?C.accent:C.muted}}>{track.id===t.id&&playing?<IPlay s={12}/>:i+1}</div>
+                  <div style={{width:36,height:36,borderRadius:9,overflow:"hidden",flexShrink:0,background:C.card}}>
                     <img src={ARTISTS.find(a=>a.id===t.artistId)?.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
                   </div>
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:12,fontWeight:600,color:track.id===t.id&&playing?C.accent:C.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.title}</div>
-                    <div style={{fontSize:10,color:C.muted}}>{t.artist}</div>
+                    <div style={{fontSize:13,fontWeight:600,color:track.id===t.id&&playing?C.accent:C.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.title}</div>
+                    <div style={{fontSize:11,color:C.muted}}>{t.artist}</div>
                   </div>
-                  <button onClick={e=>{e.stopPropagation();toggleLike(t.id);}} style={{background:"none",border:"none",cursor:"pointer",color:liked.has(t.id)?C.accent2:C.muted,padding:3,flexShrink:0}}><IHeart s={12} f={liked.has(t.id)}/></button>
-                  <div style={{fontSize:10,color:C.muted,minWidth:28,textAlign:"right",flexShrink:0}}>{fmt(t.duration)}</div>
+                  <button onClick={e=>{e.stopPropagation();toggleLike(t.id);}} style={{background:"none",border:"none",cursor:"pointer",color:liked.has(t.id)?C.accent2:C.muted,padding:4}}><IHeart s={14} f={liked.has(t.id)}/></button>
+                  <div style={{fontSize:11,color:C.muted,minWidth:32,textAlign:"right"}}>{fmt(t.duration)}</div>
                 </div>
               ))}
             </div>
 
-            {/* ── SECTION : En cours ── */}
-            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
-              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.purple}44,transparent)`}}/>
-              <span style={{fontSize:11,fontWeight:700,color:C.purple,letterSpacing:1.5,textTransform:"uppercase"}}>En cours</span>
-              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.purple}44,transparent)`}}/>
-            </div>
-            <div style={{padding:"16px",borderRadius:16,background:C.card,border:`1px solid ${C.border}`,marginBottom:32,display:"flex",alignItems:"center",gap:16}}>
-              <div style={{width:56,height:56,borderRadius:12,overflow:"hidden",flexShrink:0}}>
-                <img src={ARTISTS.find(a=>a.id===track.artistId)?.cover||""} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-              </div>
-              <div style={{flex:1,minWidth:0}}>
-                <div style={{fontSize:14,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2}}>{track.title}</div>
-                <div style={{fontSize:12,color:C.muted,marginBottom:10}}>{track.artist}</div>
-                <div style={{height:2,borderRadius:1,background:C.border,overflow:"hidden"}}>
-                  <div style={{height:"100%",width:`${(progress/track.duration)*100}%`,background:`linear-gradient(to right,${C.accent},${C.accent2})`,transition:"width .5s"}}/>
+            {/* Artists grid */}
+            <SLabel label="Artistes" color={C.accent} C={C}/>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(140px,1fr))",gap:12}}>
+              {ARTISTS.slice(0,4).map(a=>(
+                <div key={a.id} className="card-hvr" onClick={()=>{setArtistSel(a);setTeamTab("support");}} style={{borderRadius:14,overflow:"hidden",background:C.card,border:`1px solid ${C.border}`,cursor:"pointer",transition:"all .25s"}}>
+                  <div style={{height:90,overflow:"hidden"}}><img src={a.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/></div>
+                  <div style={{padding:"10px 12px"}}>
+                    <div style={{fontWeight:700,fontSize:13,marginBottom:2}}>{a.name}</div>
+                    <div style={{fontSize:11,color:C.muted}}>{a.genre}</div>
+                  </div>
                 </div>
-              </div>
-              <div style={{display:"flex",gap:14,alignItems:"center",flexShrink:0}}>
-                <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i-1+TRACKS.length)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><IPrev s={14}/></button>
-                <button onClick={()=>setPlay(p=>!p)} style={{width:36,height:36,borderRadius:"50%",border:"none",cursor:"pointer",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center"}}>{playing?<IPause s={14}/>:<IPlay s={14}/>}</button>
-                <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i+1)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><INext s={14}/></button>
-              </div>
+              ))}
             </div>
+          </div>
+        )}
 
-            {/* ── SECTION : Explorer ── */}
-            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
-              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent}44,transparent)`}}/>
-              <span style={{fontSize:11,fontWeight:700,color:C.accent,letterSpacing:1.5,textTransform:"uppercase"}}>Explorer</span>
-              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent}44,transparent)`}}/>
+        {/* Discover */}
+        {mode==="team" && teamTab==="discover" && (
+          <div style={{padding:"28px",animation:"fadeUp .35s ease both"}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:24,marginBottom:20}}>Explorer</div>
+            <div style={{position:"relative",marginBottom:24,maxWidth:400}}>
+              <div style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)",color:C.muted}}><ISearch s={15}/></div>
+              <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Artiste, genre…" style={{width:"100%",padding:"11px 14px 11px 38px",background:C.card,border:`1px solid ${C.border}`,borderRadius:12,color:C.text,fontSize:13,transition:"border .2s"}} onFocus={e=>e.target.style.borderColor=C.accent} onBlur={e=>e.target.style.borderColor=C.border}/>
             </div>
-            <div style={{position:"relative",marginBottom:16,maxWidth:380}}>
-              <div style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:C.muted}}><ISearch s={13}/></div>
-              <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Artiste, genre…" style={{width:"100%",padding:"9px 12px 9px 32px",background:C.card,border:`1px solid ${C.border}`,borderRadius:10,color:C.text,fontSize:13}} onFocus={e=>e.target.style.borderColor=C.accent} onBlur={e=>e.target.style.borderColor=C.border}/>
-            </div>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(170px,1fr))",gap:12,marginBottom:32}}>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))",gap:16}}>
               {filteredArtists.map(a=>{
-                const socials=ARTIST_SOCIALS[a.id]||{};
-                return(
-                  <div key={a.id} className="card-hvr" style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",cursor:"pointer",transition:"all .25s"}}>
-                    <div style={{height:110,overflow:"hidden",position:"relative"}}>
+                const socials = ARTIST_SOCIALS[a.id]||{};
+                return (
+                  <div key={a.id} className="card-hvr" style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:16,overflow:"hidden",cursor:"pointer",transition:"all .25s"}}>
+                    <div style={{height:140,overflow:"hidden",position:"relative"}}>
                       <img src={a.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
                       <div style={{position:"absolute",inset:0,background:`linear-gradient(to top,${C.bg}cc,transparent)`}}/>
-                      <div style={{position:"absolute",top:7,right:7,fontSize:9,padding:"2px 6px",borderRadius:20,background:"rgba(0,0,0,.65)",color:C.accent,fontWeight:700}}>{a.genre}</div>
+                      <div style={{position:"absolute",top:10,right:10,fontSize:10,padding:"2px 8px",borderRadius:20,background:"rgba(0,0,0,.6)",color:C.accent,fontWeight:700}}>{a.genre}</div>
                     </div>
-                    <div style={{padding:"10px 12px"}}>
-                      <div style={{fontWeight:700,fontSize:13,marginBottom:5}}>{a.name}</div>
-                      {Object.keys(socials).length>0&&(
-                        <div style={{display:"flex",gap:4,marginBottom:7}}>
-                          {socials.instagram&&<span style={{fontSize:9,padding:"2px 5px",borderRadius:20,background:"rgba(225,48,108,.12)",color:"#E1306C",fontWeight:600}}>Insta</span>}
-                          {socials.tiktok&&<span style={{fontSize:9,padding:"2px 5px",borderRadius:20,background:"rgba(105,201,208,.12)",color:"#69C9D0",fontWeight:600}}>TikTok</span>}
-                          {socials.snapchat&&<span style={{fontSize:9,padding:"2px 5px",borderRadius:20,background:"rgba(255,252,0,.1)",color:"#FFD700",fontWeight:600}}>Snap</span>}
+                    <div style={{padding:"12px 14px"}}>
+                      <div style={{fontWeight:700,fontSize:14,marginBottom:6}}>{a.name}</div>
+                      {/* Réseaux sociaux */}
+                      {Object.keys(socials).length>0 && (
+                        <div style={{display:"flex",gap:6,marginBottom:10}}>
+                          {socials.instagram && <a href={`https://instagram.com/${socials.instagram.replace("@","")}`} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{fontSize:10,padding:"2px 8px",borderRadius:20,background:"rgba(225,48,108,.12)",color:"#E1306C",fontWeight:600,textDecoration:"none"}}>Insta</a>}
+                          {socials.tiktok    && <a href={`https://tiktok.com/@${socials.tiktok.replace("@","")}`} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{fontSize:10,padding:"2px 8px",borderRadius:20,background:"rgba(105,201,208,.12)",color:"#69C9D0",fontWeight:600,textDecoration:"none"}}>TikTok</a>}
+                          {socials.snapchat  && <a href={`https://snapchat.com/add/${socials.snapchat}`} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{fontSize:10,padding:"2px 8px",borderRadius:20,background:"rgba(255,252,0,.1)",color:"#FFD700",fontWeight:600,textDecoration:"none"}}>Snap</a>}
                         </div>
                       )}
-                      <div style={{display:"flex",gap:5}}>
-                        <button className="hvr" onClick={()=>{setArtistSel(a);setTeamTab("support");}} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${C.accent}20`,color:C.accent,fontSize:10,fontWeight:700,cursor:"pointer"}}>Soutenir</button>
-                        <button className="hvr" onClick={()=>play(TRACKS.find(t=>t.artistId===a.id)||TRACKS[0])} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${C.accent2}20`,color:C.accent2,fontSize:10,fontWeight:700,cursor:"pointer"}}>Écouter</button>
+                      <div style={{display:"flex",gap:8}} onClick={e=>e.stopPropagation()}>
+                        <button className="hvr" onClick={()=>{setArtistSel(a);setTeamTab("support");}} style={{flex:1,padding:"7px 0",borderRadius:9,border:"none",background:`${C.accent}20`,color:C.accent,fontSize:11,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>Soutenir</button>
+                        <button className="hvr" onClick={()=>play(TRACKS.find(t=>t.artistId===a.id)||TRACKS[0])} style={{flex:1,padding:"7px 0",borderRadius:9,border:"none",background:`${C.accent2}20`,color:C.accent2,fontSize:11,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>Écouter</button>
                       </div>
                     </div>
                   </div>
                 );
               })}
             </div>
-
-            {/* ── SECTION : Nouvelles pépites ── */}
-            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
-              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.gold}44,transparent)`}}/>
-              <span style={{fontSize:11,fontWeight:700,color:C.gold,letterSpacing:1.5,textTransform:"uppercase"}}>Nouvelles pépites</span>
-              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.gold}44,transparent)`}}/>
-            </div>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))",gap:10,marginBottom:32}}>
-              {ARTISTS.slice(2,5).map((a,i)=>(
-                <div key={a.id} className="row" onClick={()=>play(TRACKS.find(t=>t.artistId===a.id)||TRACKS[0])} style={{display:"flex",alignItems:"center",gap:12,padding:"12px",borderRadius:12,background:C.card,border:`1px solid ${C.border}`,cursor:"pointer",transition:"all .2s"}}>
-                  <img src={a.cover} alt="" style={{width:42,height:42,borderRadius:10,objectFit:"cover",flexShrink:0}}/>
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:13,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{a.name}</div>
-                    <div style={{fontSize:11,color:C.muted}}>{a.genre}</div>
-                  </div>
-                  <div style={{fontSize:9,padding:"2px 8px",borderRadius:20,background:`${C.gold}18`,color:C.gold,fontWeight:700,flexShrink:0}}>Nouveau</div>
-                </div>
-              ))}
-            </div>
-
-            {/* ── SECTION : Les plus streamés ── */}
-            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
-              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent2}44,transparent)`}}/>
-              <span style={{fontSize:11,fontWeight:700,color:C.accent2,letterSpacing:1.5,textTransform:"uppercase"}}>Les plus streamés</span>
-              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent2}44,transparent)`}}/>
-            </div>
-            <div style={{display:"flex",flexDirection:"column",gap:2}}>
-              {[...TRACKS].sort((a,b)=>b.plays-a.plays).map((t,i)=>(
-                <div key={t.id} className="row" onClick={()=>play(t)} style={{display:"flex",alignItems:"center",gap:12,padding:"9px 10px",borderRadius:10,cursor:"pointer",transition:"background .2s"}}>
-                  <div style={{width:20,textAlign:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:13,color:i<3?C.accent2:C.muted,flexShrink:0}}>#{i+1}</div>
-                  <div style={{width:32,height:32,borderRadius:8,overflow:"hidden",flexShrink:0}}>
-                    <img src={ARTISTS.find(a=>a.id===t.artistId)?.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-                  </div>
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:12,fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.title}</div>
-                    <div style={{fontSize:10,color:C.muted}}>{t.artist}</div>
-                  </div>
-                  <div style={{fontSize:11,color:C.accent2,fontWeight:600,flexShrink:0}}>{fmtK(t.plays)} écoutes</div>
-                </div>
-              ))}
-            </div>
-
           </div>
         )}
 
@@ -475,7 +422,7 @@ export default function Vizion2Unified() {
                 <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)",color:C.muted,fontSize:14}}>€</span>
                 <input type="number" placeholder="Autre montant…" value={donCust} onChange={e=>setDonCust(e.target.value)} style={{width:"100%",padding:"11px 12px 11px 28px",background:C.card2,border:`1px solid ${donCust?C.accent:C.border}`,borderRadius:11,color:C.text,fontSize:14}} onFocus={e=>e.target.style.borderColor=C.accent} onBlur={e=>e.target.style.borderColor=donCust?C.accent:C.border}/>
               </div>
-              <InfoBox label={`Don à ${selectedArtist.name}`} value={fmtE(finalDon)} note={`90% à l'artiste · 10% Vizion 2.0`} C={C}/>
+              <InfoBox label={`Don à ${selectedArtist.name}`} value={fmtE(finalDon)} note={`90% à l'artiste · 10% Vision 2.0`} C={C}/>
               {donOk && <SuccessBanner text={`Don envoyé à ${selectedArtist.name} !`} C={C}/>}
               <BigBtn onClick={()=>simPay(()=>setDonOk(true))} disabled={finalDon<=0||paying} loading={paying} color={C.accent}>Envoyer {fmtE(finalDon)}</BigBtn>
             </div>
@@ -497,7 +444,7 @@ export default function Vizion2Unified() {
                   </div>
                 ))}
               </div>
-              <InfoBox label={`Abonnement ${selPlan.label}`} value={`${selPlan.price}€/mois`} note={`90% à ${selectedArtist.name} · 10% Vizion 2.0`} C={C}/>
+              <InfoBox label={`Abonnement ${selPlan.label}`} value={`${selPlan.price}€/mois`} note={`90% à ${selectedArtist.name} · 10% Vision 2.0`} C={C}/>
               {subOk && <SuccessBanner text={`Abonnement ${selPlan.label} activé !`} C={C}/>}
               <BigBtn onClick={()=>simPay(()=>setSubOk(true))} disabled={paying} loading={paying} color={C.accent2}>S'abonner · {selPlan.price}€/mois</BigBtn>
             </div>
@@ -506,76 +453,70 @@ export default function Vizion2Unified() {
 
         {/* ════ ARTIST SCREENS ════ */}
 
-        {/* Publier — Audio en haut, Vidéo en dessous */}
+        {/* Upload Audio */}
         {mode==="artist" && artTab==="upload" && (
-          <div style={{padding:"24px 32px",maxWidth:760,margin:"0 auto",animation:"fadeUp .35s ease both",width:"100%"}}>
-            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:22,marginBottom:4}}>Publier du contenu</div>
-            <div style={{color:C.muted,fontSize:13,marginBottom:24}}>Audio et vidéo depuis cette même page</div>
-
-            {/* AUDIO */}
-            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
-              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent}44,transparent)`}}/>
-              <span style={{fontSize:11,fontWeight:700,color:C.accent,letterSpacing:1.5,textTransform:"uppercase"}}>Titre Audio</span>
-              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent}44,transparent)`}}/>
-            </div>
+          <div style={{padding:"28px",maxWidth:660,margin:"0 auto",animation:"fadeUp .35s ease both"}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:24,marginBottom:4}}>Publier un titre</div>
+            <div style={{color:C.muted,fontSize:13,marginBottom:24}}>MP3 · WAV · FLAC · Max 50MB</div>
             {audioOk && <SuccessBanner text="Titre publié avec succès !" C={C}/>}
-            <div style={{background:C.card,borderRadius:18,border:`1px solid ${C.border}`,padding:"20px",marginBottom:32}}>
-              <div onClick={()=>audioRef.current?.click()} style={{border:`2px dashed ${audioFile?C.accent:C.border}`,borderRadius:12,padding:"22px",textAlign:"center",cursor:"pointer",marginBottom:18,transition:"all .2s",background:audioFile?`${C.accent}06`:"transparent"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=audioFile?C.accent:C.border}>
-                <div style={{color:audioFile?C.accent:C.muted,marginBottom:6,display:"flex",justifyContent:"center"}}><IUpload s={24}/></div>
-                {audioFile?<><div style={{fontWeight:700,color:C.accent}}>{audioFile.name}</div><div style={{fontSize:12,color:C.muted,marginTop:2}}>{(audioFile.size/1024/1024).toFixed(1)} MB</div></>:<><div style={{fontWeight:600,marginBottom:2}}>Clique pour choisir ton fichier audio</div><div style={{fontSize:12,color:C.muted}}>MP3 · WAV · FLAC · Max 50MB</div></>}
+            <div style={{background:C.card,borderRadius:20,border:`1px solid ${C.border}`,padding:"24px"}}>
+              <div onClick={()=>audioRef.current?.click()} style={{border:`2px dashed ${audioFile?C.accent:C.border}`,borderRadius:14,padding:"28px",textAlign:"center",cursor:"pointer",marginBottom:20,transition:"all .2s",background:audioFile?`${C.accent}06`:"transparent"}} onMouseEnter={e=>{e.currentTarget.style.borderColor=C.accent;}} onMouseLeave={e=>{e.currentTarget.style.borderColor=audioFile?C.accent:C.border;}}>
+                <div style={{color:audioFile?C.accent:C.muted,marginBottom:8,display:"flex",justifyContent:"center"}}><IUpload s={28}/></div>
+                {audioFile?<><div style={{fontWeight:700,color:C.accent}}>{audioFile.name}</div><div style={{fontSize:12,color:C.muted,marginTop:2}}>{(audioFile.size/1024/1024).toFixed(1)} MB</div></>:<><div style={{fontWeight:600,marginBottom:3}}>Clique pour choisir ton fichier</div><div style={{fontSize:12,color:C.muted}}>MP3 · WAV · FLAC · Max 50MB</div></>}
                 <input ref={audioRef} type="file" accept="audio/*" onChange={e=>{const f=e.target.files?.[0];if(f){setAudioFile(f);if(!audioTitle)setAudioTitle(f.name.replace(/\.[^.]+$/,""));}}} style={{display:"none"}}/>
               </div>
-              <div style={{display:"grid",gridTemplateColumns:"80px 1fr",gap:14,marginBottom:16}}>
+              <div style={{display:"grid",gridTemplateColumns:"90px 1fr",gap:16,marginBottom:18}}>
                 <div>
                   <FLabel C={C}>Pochette</FLabel>
-                  <div onClick={()=>coverRef.current?.click()} style={{width:80,height:80,borderRadius:11,overflow:"hidden",background:C.card2,border:`2px dashed ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=C.border}>
-                    {coverPrev?<img src={coverPrev} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:<div style={{color:C.muted,textAlign:"center"}}><IUpload s={16}/><div style={{fontSize:9,marginTop:2}}>Ajouter</div></div>}
+                  <div onClick={()=>coverRef.current?.click()} style={{width:90,height:90,borderRadius:12,overflow:"hidden",background:C.card2,border:`2px dashed ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",transition:"border .2s"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=C.border}>
+                    {coverPrev?<img src={coverPrev} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:<div style={{color:C.muted,textAlign:"center"}}><IUpload s={18}/><div style={{fontSize:9,marginTop:3}}>Ajouter</div></div>}
                   </div>
                   <input ref={coverRef} type="file" accept="image/*" onChange={e=>{const f=e.target.files?.[0];if(f)setCoverPrev(URL.createObjectURL(f));}} style={{display:"none"}}/>
                 </div>
-                <div style={{display:"flex",flexDirection:"column",gap:10}}>
+                <div style={{display:"flex",flexDirection:"column",gap:12}}>
                   <div><FLabel C={C}>Titre *</FLabel><FInput value={audioTitle} onChange={setAudioTitle} placeholder="Ex: Lumière Froide" C={C}/></div>
                   <div>
                     <FLabel C={C}>Accès</FLabel>
-                    <div style={{display:"flex",gap:7}}>
+                    <div style={{display:"flex",gap:8}}>
                       {[["public","Public"],["super","Super Team"],["vip","VIP"]].map(([v,l])=>(
-                        <button key={v} onClick={()=>setAudioAccess(v)} style={{flex:1,padding:"7px 4px",borderRadius:9,border:`2px solid ${audioAccess===v?C.accent:C.border}`,background:audioAccess===v?`${C.accent}15`:C.card2,color:audioAccess===v?C.accent:C.muted,fontSize:11,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>{l}</button>
+                        <button key={v} onClick={()=>setAudioAccess(v)} style={{flex:1,padding:"8px 4px",borderRadius:9,border:`2px solid ${audioAccess===v?C.accent:C.border}`,background:audioAccess===v?`${C.accent}15`:C.card2,color:audioAccess===v?C.accent:C.muted,fontSize:10,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>{l}</button>
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
-              <BigBtn onClick={uploadAudio} disabled={!audioFile||!audioTitle||audioLoading} loading={audioLoading} color={C.accent}><IUpload s={14}/>Publier le titre</BigBtn>
+              <BigBtn onClick={uploadAudio} disabled={!audioFile||!audioTitle||audioLoading} loading={audioLoading} color={C.accent}><IUpload s={15}/>Publier le titre</BigBtn>
             </div>
+          </div>
+        )}
 
-            {/* VIDEO */}
-            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:12}}>
-              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent2}44,transparent)`}}/>
-              <span style={{fontSize:11,fontWeight:700,color:C.accent2,letterSpacing:1.5,textTransform:"uppercase"}}>Vidéo</span>
-              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent2}44,transparent)`}}/>
-            </div>
-            <div style={{padding:"8px 14px",borderRadius:10,background:`${C.accent2}08`,border:`1px solid ${C.accent2}22`,marginBottom:14,fontSize:12,color:C.muted}}>
-              <span style={{color:C.accent2,fontWeight:600}}>Super Team</span> → Clips officiels &nbsp;·&nbsp; <span style={{color:"#F5C842",fontWeight:600}}>VIP</span> → Live studio + Making of
+        {/* Upload Video */}
+        {mode==="artist" && artTab==="video" && (
+          <div style={{padding:"28px",maxWidth:660,margin:"0 auto",animation:"fadeUp .35s ease both"}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:24,marginBottom:4}}>Publier une vidéo</div>
+            <div style={{color:C.muted,fontSize:13,marginBottom:16}}>MP4 · MOV · Max 500MB</div>
+            <div style={{padding:"12px 16px",borderRadius:12,background:`${C.accent}08`,border:`1px solid ${C.accent}22`,marginBottom:20,fontSize:12,color:C.muted}}>
+              <span style={{color:C.accent,fontWeight:700}}>Super Team</span> → Clips officiels · <span style={{color:C.accent2,fontWeight:700}}>VIP</span> → Clips + Live studio + Making of
             </div>
             {videoOk && <SuccessBanner text="Vidéo publiée avec succès !" C={C}/>}
-            <div style={{background:C.card,borderRadius:18,border:`1px solid ${C.border}`,padding:"20px"}}>
-              <div onClick={()=>videoRef.current?.click()} style={{border:`2px dashed ${videoFile?C.accent2:C.border}`,borderRadius:12,padding:"22px",textAlign:"center",cursor:"pointer",marginBottom:16,transition:"all .2s",background:videoFile?`${C.accent2}06`:"transparent"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent2} onMouseLeave={e=>e.currentTarget.style.borderColor=videoFile?C.accent2:C.border}>
-                <div style={{color:videoFile?C.accent2:C.muted,marginBottom:6,display:"flex",justifyContent:"center"}}><IVideo s={24}/></div>
-                {videoFile?<><div style={{fontWeight:700,color:C.accent2}}>{videoFile.name}</div><div style={{fontSize:12,color:C.muted,marginTop:2}}>{(videoFile.size/1024/1024).toFixed(1)} MB</div></>:<><div style={{fontWeight:600,marginBottom:2}}>Clique pour choisir ta vidéo</div><div style={{fontSize:12,color:C.muted}}>MP4 · MOV · Max 500MB</div></>}
+            <div style={{background:C.card,borderRadius:20,border:`1px solid ${C.border}`,padding:"24px"}}>
+              <div onClick={()=>videoRef.current?.click()} style={{border:`2px dashed ${videoFile?C.accent:C.border}`,borderRadius:14,padding:"28px",textAlign:"center",cursor:"pointer",marginBottom:20,transition:"all .2s",background:videoFile?`${C.accent}06`:"transparent"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=videoFile?C.accent:C.border}>
+                <div style={{color:videoFile?C.accent:C.muted,marginBottom:8,display:"flex",justifyContent:"center"}}><IVideo s={28}/></div>
+                {videoFile?<><div style={{fontWeight:700,color:C.accent}}>{videoFile.name}</div><div style={{fontSize:12,color:C.muted,marginTop:2}}>{(videoFile.size/1024/1024).toFixed(1)} MB</div></>:<><div style={{fontWeight:600,marginBottom:3}}>Clique pour choisir ta vidéo</div><div style={{fontSize:12,color:C.muted}}>MP4 · MOV · Max 500MB</div></>}
                 <input ref={videoRef} type="file" accept="video/*" onChange={e=>{const f=e.target.files?.[0];if(f){setVideoFile(f);if(!videoTitle)setVideoTitle(f.name.replace(/\.[^.]+$/,""));}}} style={{display:"none"}}/>
               </div>
-              <div style={{display:"flex",flexDirection:"column",gap:12,marginBottom:16}}>
+              <div style={{display:"flex",flexDirection:"column",gap:12,marginBottom:20}}>
                 <div><FLabel C={C}>Titre de la vidéo *</FLabel><FInput value={videoTitle} onChange={setVideoTitle} placeholder="Ex: Lumière Froide — Clip officiel" C={C}/></div>
                 <div>
                   <FLabel C={C}>Accès</FLabel>
-                  <div style={{display:"flex",gap:7}}>
+                  <div style={{display:"flex",gap:8}}>
                     {[["public","Public"],["super","Super Team"],["vip","VIP"]].map(([v,l])=>(
-                      <button key={v} onClick={()=>setVideoAccess(v)} style={{flex:1,padding:"7px 4px",borderRadius:9,border:`2px solid ${videoAccess===v?C.accent2:C.border}`,background:videoAccess===v?`${C.accent2}15`:C.card2,color:videoAccess===v?C.accent2:C.muted,fontSize:11,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>{l}</button>
+                      <button key={v} onClick={()=>setVideoAccess(v)} style={{flex:1,padding:"8px 4px",borderRadius:9,border:`2px solid ${videoAccess===v?C.accent:C.border}`,background:videoAccess===v?`${C.accent}15`:C.card2,color:videoAccess===v?C.accent:C.muted,fontSize:10,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>{l}</button>
                     ))}
                   </div>
                 </div>
               </div>
-              <BigBtn onClick={uploadVideo} disabled={!videoFile||!videoTitle||videoLoading} loading={videoLoading} color={C.accent2}><IVideo s={14}/>Publier la vidéo</BigBtn>
+              <BigBtn onClick={uploadVideo} disabled={!videoFile||!videoTitle||videoLoading} loading={videoLoading} color={C.accent}><IVideo s={15}/>Publier la vidéo</BigBtn>
             </div>
           </div>
         )}
@@ -584,7 +525,7 @@ export default function Vizion2Unified() {
         {mode==="artist" && artTab==="sacem" && (
           <div style={{padding:"28px",maxWidth:700,margin:"0 auto",animation:"fadeUp .35s ease both"}}>
             <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:24,marginBottom:4}}>Dépôt SACEM</div>
-            <div style={{color:C.muted,fontSize:13,marginBottom:20}}>Enregistrement de titre via Vizion 2.0 Music Publishing</div>
+            <div style={{color:C.muted,fontSize:13,marginBottom:20}}>Enregistrement de titre via Vision 2.0 Music Publishing</div>
 
             {sacemOk ? (
               <div style={{textAlign:"center",padding:"60px 0"}}>
@@ -599,11 +540,11 @@ export default function Vizion2Unified() {
                 {/* ── EXPLICATIONS ── */}
                 <div style={{display:"flex",flexDirection:"column",gap:10,marginBottom:24}}>
 
-                  {/* Cas 1 — Pas d'éditeur → Vizion 2.0 édite */}
+                  {/* Cas 1 — Pas d'éditeur → Vision 2.0 édite */}
                   <div style={{padding:"16px 18px",borderRadius:14,background:`${C.accent2}08`,border:`1px solid ${C.accent2}22`}}>
-                    <div style={{fontWeight:700,fontSize:13,color:C.accent2,marginBottom:6}}>Tu n'as pas d'éditeur — Vizion 2.0 peut t'éditer</div>
+                    <div style={{fontWeight:700,fontSize:13,color:C.accent2,marginBottom:6}}>Tu n'as pas d'éditeur — Vision 2.0 peut t'éditer</div>
                     <div style={{fontSize:12,color:C.muted,lineHeight:1.7}}>
-                      Si toi (l'artiste) ou ton beatmaker êtes inscrits à la SACEM mais sans éditeur, Vizion 2.0 peut devenir votre éditeur pour ce titre. Tu gardes <strong style={{color:C.accent2}}>100% de ta part auteur/compositeur</strong>. Vizion 2.0 perçoit uniquement la <strong style={{color:C.accent2}}>part éditeur SACEM</strong> (50% des droits d'auteur collectés). Coche la case "Vizion 2.0 m'édite" pour chaque personne concernée.
+                      Si toi (l'artiste) ou ton beatmaker êtes inscrits à la SACEM mais sans éditeur, Vision 2.0 peut devenir votre éditeur pour ce titre. Tu gardes <strong style={{color:C.accent2}}>100% de ta part auteur/compositeur</strong>. Vision 2.0 perçoit uniquement la <strong style={{color:C.accent2}}>part éditeur SACEM</strong> (50% des droits d'auteur collectés). Coche la case "Vision 2.0 m'édite" pour chaque personne concernée.
                     </div>
                   </div>
 
@@ -611,7 +552,7 @@ export default function Vizion2Unified() {
                   <div style={{padding:"16px 18px",borderRadius:14,background:`${C.accent}08`,border:`1px solid ${C.accent}22`}}>
                     <div style={{fontWeight:700,fontSize:13,color:C.accent,marginBottom:6}}>Tu as déjà un éditeur</div>
                     <div style={{fontSize:12,color:C.muted,lineHeight:1.7}}>
-                      Si toi ou ton beatmaker avez déjà un contrat avec un éditeur, déclare ses informations dans le champ prévu. Vizion 2.0 effectue le dépôt sans retenir de commission sur cette part.
+                      Si toi ou ton beatmaker avez déjà un contrat avec un éditeur, déclare ses informations dans le champ prévu. Vision 2.0 effectue le dépôt sans retenir de commission sur cette part.
                     </div>
                   </div>
 
@@ -619,7 +560,7 @@ export default function Vizion2Unified() {
                   <div style={{padding:"14px 18px",borderRadius:14,background:C.card2,border:`1px solid ${C.border}`}}>
                     <div style={{fontWeight:700,fontSize:13,color:C.muted,marginBottom:4}}>Pas encore inscrit à la SACEM ?</div>
                     <div style={{fontSize:12,color:C.muted,lineHeight:1.6,marginBottom:8}}>
-                      L'adhésion SACEM coûte <strong style={{color:C.text}}>100€ une seule fois</strong> (droit d'entrée, pas de cotisation annuelle). Ce montant est restitué si tu te désinscrits. Vizion 2.0 ne prend rien sur cette démarche — c'est ta propre adhésion.
+                      L'adhésion SACEM coûte <strong style={{color:C.text}}>100€ une seule fois</strong> (droit d'entrée, pas de cotisation annuelle). Ce montant est restitué si tu te désinscrits. Vision 2.0 ne prend rien sur cette démarche — c'est ta propre adhésion.
                     </div>
                     <a href="https://www.sacem.fr/adhesion" target="_blank" rel="noreferrer" style={{display:"inline-flex",alignItems:"center",gap:6,padding:"6px 14px",borderRadius:9,background:`${C.accent}15`,border:`1px solid ${C.accent}33`,color:C.accent,fontSize:12,fontWeight:700,textDecoration:"none"}}>
                       Adhérer sur sacem.fr →
@@ -659,7 +600,7 @@ export default function Vizion2Unified() {
                           {/* Éditeur pour cet auteur/compositeur */}
                           <div style={{display:"flex",gap:8,marginBottom:p.hasEditor?8:0}}>
                             <button onClick={()=>setSacem(s=>({...s,[field]:s[field].map((x,j)=>j===i?{...x,hasEditor:true,editorName:"",editorNum:"",editorShare:""}:x)}))} style={{padding:"4px 12px",borderRadius:8,border:`1px solid ${p.hasEditor?color:C.border}`,background:p.hasEditor?`${color}15`:"transparent",color:p.hasEditor?color:C.muted,fontSize:11,fontWeight:600,cursor:"pointer",transition:"all .2s"}}>J'ai un éditeur</button>
-                            <button onClick={()=>setSacem(s=>({...s,[field]:s[field].map((x,j)=>j===i?{...x,hasEditor:false}:x)}))} style={{padding:"4px 12px",borderRadius:8,border:`1px solid ${!p.hasEditor?C.accent2:C.border}`,background:!p.hasEditor?`${C.accent2}15`:"transparent",color:!p.hasEditor?C.accent2:C.muted,fontSize:11,fontWeight:600,cursor:"pointer",transition:"all .2s"}}>Vizion 2.0 m'édite</button>
+                            <button onClick={()=>setSacem(s=>({...s,[field]:s[field].map((x,j)=>j===i?{...x,hasEditor:false}:x)}))} style={{padding:"4px 12px",borderRadius:8,border:`1px solid ${!p.hasEditor?C.accent2:C.border}`,background:!p.hasEditor?`${C.accent2}15`:"transparent",color:!p.hasEditor?C.accent2:C.muted,fontSize:11,fontWeight:600,cursor:"pointer",transition:"all .2s"}}>Vision 2.0 m'édite</button>
                           </div>
                           {p.hasEditor && (
                             <div style={{padding:"12px",borderRadius:11,background:C.card2,border:`1px solid ${C.border}`,display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
@@ -677,7 +618,7 @@ export default function Vizion2Unified() {
                   {/* Beatmakers */}
                   <SBlock title="Beatmakers / Arrangeurs" color={C.muted} C={C}>
                     <div style={{fontSize:12,color:C.muted,marginBottom:12,lineHeight:1.6}}>
-                      Si le beatmaker est inscrit à la SACEM et n'a pas d'éditeur, Vizion 2.0 peut aussi l'éditer. Si il a déjà son propre éditeur, déclare-le ci-dessous.
+                      Si le beatmaker est inscrit à la SACEM et n'a pas d'éditeur, Vision 2.0 peut aussi l'éditer. Si il a déjà son propre éditeur, déclare-le ci-dessous.
                     </div>
                     {sacem.beatmakers.map((b,i)=>(
                       <div key={i} style={{marginBottom:16,padding:"14px",borderRadius:12,background:C.card2,border:`1px solid ${C.border}`}}>
@@ -692,7 +633,7 @@ export default function Vizion2Unified() {
                         <div style={{marginBottom:b.hasEditor?10:0}}>
                           <FLabel C={C}>Situation éditoriale du beatmaker</FLabel>
                           <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-                            <button onClick={()=>setSacem(s=>({...s,beatmakers:s.beatmakers.map((x,j)=>j===i?{...x,hasEditor:false,editorName:"",editorNum:"",editorShare:""}:x)}))} style={{padding:"5px 14px",borderRadius:9,border:`1px solid ${b.hasEditor===false?C.accent2:C.border}`,background:b.hasEditor===false?`${C.accent2}15`:"transparent",color:b.hasEditor===false?C.accent2:C.muted,fontSize:11,fontWeight:600,cursor:"pointer",transition:"all .2s"}}>Vizion 2.0 m'édite</button>
+                            <button onClick={()=>setSacem(s=>({...s,beatmakers:s.beatmakers.map((x,j)=>j===i?{...x,hasEditor:false,editorName:"",editorNum:"",editorShare:""}:x)}))} style={{padding:"5px 14px",borderRadius:9,border:`1px solid ${b.hasEditor===false?C.accent2:C.border}`,background:b.hasEditor===false?`${C.accent2}15`:"transparent",color:b.hasEditor===false?C.accent2:C.muted,fontSize:11,fontWeight:600,cursor:"pointer",transition:"all .2s"}}>Vision 2.0 m'édite</button>
                             <button onClick={()=>setSacem(s=>({...s,beatmakers:s.beatmakers.map((x,j)=>j===i?{...x,hasEditor:true}:x)}))} style={{padding:"5px 14px",borderRadius:9,border:`1px solid ${b.hasEditor===true?C.accent:C.border}`,background:b.hasEditor===true?`${C.accent}15`:"transparent",color:b.hasEditor===true?C.accent:C.muted,fontSize:11,fontWeight:600,cursor:"pointer",transition:"all .2s"}}>J'ai un éditeur</button>
                             <button onClick={()=>setSacem(s=>({...s,beatmakers:s.beatmakers.map((x,j)=>j===i?{...x,hasEditor:null}:x)}))} style={{padding:"5px 14px",borderRadius:9,border:`1px solid ${b.hasEditor===null?C.muted:C.border}`,background:b.hasEditor===null?`${C.muted}10`:"transparent",color:b.hasEditor===null?C.text:C.muted,fontSize:11,fontWeight:600,cursor:"pointer",transition:"all .2s"}}>Non inscrit SACEM</button>
                           </div>
@@ -708,10 +649,10 @@ export default function Vizion2Unified() {
                             </div>
                           </div>
                         )}
-                        {/* Vizion 2.0 édite le beatmaker */}
+                        {/* Vision 2.0 édite le beatmaker */}
                         {b.hasEditor===false && (
                           <div style={{padding:"10px 12px",borderRadius:11,background:`${C.accent2}08`,border:`1px solid ${C.accent2}22`,marginTop:10,fontSize:11,color:C.accent2}}>
-                            Vizion 2.0 devient l'éditeur de ce beatmaker pour ce titre. Il conserve 100% de sa part compositeur.
+                            Vision 2.0 devient l'éditeur de ce beatmaker pour ce titre. Il conserve 100% de sa part compositeur.
                           </div>
                         )}
                         {/* Non inscrit SACEM */}
@@ -727,7 +668,7 @@ export default function Vizion2Unified() {
 
                   {/* Contrat */}
                   <div style={{padding:"14px 16px",borderRadius:12,background:C.card2,border:`1px solid ${C.border}`,fontSize:12,color:C.muted,lineHeight:1.7}}>
-                    En soumettant, vous acceptez le mandat d'édition Vizion 2.0 Music Publishing et certifiez être titulaire des droits sur ce titre.
+                    En soumettant, vous acceptez le mandat d'édition Vision 2.0 Music Publishing et certifiez être titulaire des droits sur ce titre.
                   </div>
                   <BigBtn onClick={submitSacem} disabled={!sacem.title||!sacem.genre||sacemLoad} loading={sacemLoad} color={C.accent}><IDoc s={15}/>Soumettre le dépôt SACEM</BigBtn>
                 </div>
@@ -817,7 +758,7 @@ export default function Vizion2Unified() {
       )}
 
       {/* ── MODAL AUTH ── */}
-      {showAuth && (
+    {showAuth && (
       <>
         <div onClick={()=>setShowAuth(false)} style={{position:"fixed",inset:0,background:"rgba(0,0,0,.75)",zIndex:200}}/>
         <div style={{position:"fixed",top:"50%",left:"50%",transform:"translate(-50%,-50%)",zIndex:201,background:C.card,borderRadius:22,border:`1px solid ${C.border}`,padding:"32px 28px",width:"100%",maxWidth:400,boxShadow:"0 24px 64px rgba(0,0,0,.6)",animation:"fadeUp .25s ease both"}}>
@@ -826,7 +767,7 @@ export default function Vizion2Unified() {
           {/* Logo */}
           <div style={{display:"flex",alignItems:"center",gap:9,marginBottom:20}}>
             <div style={{width:28,height:28,borderRadius:8,background:`linear-gradient(135deg,${TEAM_COLORS.accent},${ARTIST_COLORS.accent})`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:13,color:"#fff"}}>V</div>
-            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15}}>VIZION <span style={{color:C.accent}}>2.0</span></span>
+            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15}}>VISION <span style={{color:C.accent}}>2.0</span></span>
           </div>
 
           {/* Tabs */}
@@ -878,7 +819,7 @@ export default function Vizion2Unified() {
           </button>
         </div>
       </>
-      )}
+    )}
     </div>
   );
 }
