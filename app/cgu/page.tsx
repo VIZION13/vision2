@@ -164,10 +164,10 @@ export default function CGUPage() {
       {/* Header */}
       <div style={{background:C.surface,borderBottom:`1px solid ${C.border}`,padding:"20px 48px",position:"sticky",top:0,zIndex:100,backdropFilter:"blur(16px)"}}>
         <div style={{maxWidth:800,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-          <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <a href="/" style={{display:"flex",alignItems:"center",gap:10,textDecoration:"none",color:"inherit"}}>
             <div style={{width:28,height:28,borderRadius:8,background:`linear-gradient(135deg,${C.mint},${C.purple})`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:13,color:"#fff"}}>V</div>
             <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15}}>VIZION <span style={{color:C.mint}}>2.0</span></span>
-          </div>
+          </a>
           <a href="/" style={{fontSize:13,color:C.muted,textDecoration:"none",padding:"7px 14px",borderRadius:9,border:`1px solid ${C.border}`,transition:"color .2s"}}
             onMouseEnter={e=>(e.currentTarget.style.color=C.mint)}
             onMouseLeave={e=>(e.currentTarget.style.color=C.muted)}>

@@ -118,10 +118,10 @@ export default function Landing() {
 
         {/* NAV */}
         <nav style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 48px",height:64,background:"rgba(13,13,15,.92)",backdropFilter:"blur(20px)",borderBottom:`1px solid ${C.border}`,position:"sticky",top:0,zIndex:100}}>
-          <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <a href="/" style={{display:"flex",alignItems:"center",gap:10,textDecoration:"none"}}>
             <div style={{width:30,height:30,borderRadius:9,background:`linear-gradient(135deg,${C.mint},${C.purple})`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:14,color:"#fff"}}>V</div>
-            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:16}}>VIZION <span style={{color:accent,transition:"color .3s"}}>2.0</span></span>
-          </div>
+            <span style={{fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:16,color:C.text}}>VIZION <span style={{color:accent,transition:"color .3s"}}>2.0</span></span>
+          </a>
 
           {/* Switcher */}
           <div style={{display:"flex",padding:4,background:C.card,borderRadius:14,border:`1px solid ${C.border}`}}>
@@ -135,7 +135,8 @@ export default function Landing() {
             </button>
           </div>
 
-          <div style={{display:"flex",gap:10}}>
+          <div style={{display:"flex",gap:10,alignItems:"center"}}>
+            <a href="/cgu" style={{fontSize:12,color:C.muted,textDecoration:"none",padding:"7px 12px",borderRadius:9,border:`1px solid ${C.border}`,transition:"color .2s"}} onMouseEnter={e=>e.currentTarget.style.color=accent} onMouseLeave={e=>e.currentTarget.style.color=C.muted}>CGU</a>
             <a href="/streaming"><button className="btn-g" style={{padding:"8px 18px",borderRadius:10,border:`1px solid ${C.border}`,background:"transparent",color:C.muted,fontSize:13,fontWeight:600,cursor:"pointer",transition:"all .25s"}}>Explorer</button></a>
             <a href="/auth"><button className="btn-p" style={{padding:"9px 22px",borderRadius:10,border:"none",background:`linear-gradient(135deg,${accent},${accent2})`,color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer",transition:"all .3s"}}>Se connecter</button></a>
           </div>

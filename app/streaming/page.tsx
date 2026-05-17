@@ -5,12 +5,12 @@ import { useState, useRef, useEffect } from "react";
 const TEAM_COLORS = {
   bg:"#0D0D0F", surface:"#141418", card:"#1A1A22", card2:"#20202C",
   border:"#2A2A36", text:"#F0EEF8", muted:"#7A7890",
-  accent:"#6ECFAA", accent2:"#B44FD4",
+  accent:"#6ECFAA", accent2:"#B44FD4", gold:"#F5C842",
 };
 const ARTIST_COLORS = {
   bg:"#0A0A14", surface:"#10101E", card:"#161628", card2:"#1C1C34",
   border:"#252538", text:"#F0EEF8", muted:"#8080A0",
-  accent:"#B44FD4", accent2:"#6ECFAA",
+  accent:"#B44FD4", accent2:"#6ECFAA", gold:"#F5C842",
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -296,125 +296,156 @@ export default function Vizion2Unified() {
 
         {/* ════ TEAM SCREENS ════ */}
 
-        {/* Accueil — Home + Explorer fusionnés */}
+        {/* Accueil — sections avec bannières séparatrices */}
         {mode==="team" && teamTab==="home" && (
-          <div style={{padding:"24px 32px",animation:"fadeUp .35s ease both",maxWidth:1100,margin:"0 auto",width:"100%"}}>
+          <div style={{padding:"24px 32px",animation:"fadeUp .35s ease both",maxWidth:1000,margin:"0 auto",width:"100%"}}>
 
-            {/* Featured */}
-            <div style={{borderRadius:18,overflow:"hidden",marginBottom:28,background:`linear-gradient(135deg,${C.card},${C.accent}0a)`,border:`1px solid ${C.border}`,display:"flex",height:150}}>
-              <div style={{position:"relative",width:160,flexShrink:0}}>
+            {/* ── Featured ── */}
+            <div style={{borderRadius:18,overflow:"hidden",marginBottom:32,background:`linear-gradient(135deg,${C.card},${C.accent}0a)`,border:`1px solid ${C.border}`,display:"flex",height:140}}>
+              <div style={{position:"relative",width:140,flexShrink:0}}>
                 <img src={ARTISTS[1].cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-                <div style={{position:"absolute",inset:0,background:"linear-gradient(to right,transparent 60%,rgba(26,26,34,1))"}}/>
+                <div style={{position:"absolute",inset:0,background:"linear-gradient(to right,transparent 50%,rgba(26,26,34,1))"}}/>
               </div>
-              <div style={{padding:"20px 24px",display:"flex",flexDirection:"column",justifyContent:"center",flex:1}}>
-                <div style={{fontSize:10,color:C.accent,letterSpacing:2,textTransform:"uppercase",fontWeight:700,marginBottom:4}}>Artiste en vedette</div>
-                <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:20,marginBottom:3}}>{ARTISTS[1].name}</div>
-                <div style={{color:C.muted,fontSize:12,marginBottom:12}}>{ARTISTS[1].genre} · {fmtK(ARTISTS[1].followers)} abonnés</div>
+              <div style={{padding:"18px 22px",display:"flex",flexDirection:"column",justifyContent:"center",flex:1}}>
+                <div style={{fontSize:9,color:C.accent,letterSpacing:2,textTransform:"uppercase",fontWeight:700,marginBottom:4}}>Artiste en vedette</div>
+                <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:18,marginBottom:3}}>{ARTISTS[1].name}</div>
+                <div style={{color:C.muted,fontSize:12,marginBottom:10}}>{ARTISTS[1].genre} · {fmtK(ARTISTS[1].followers)} abonnés</div>
                 <div style={{display:"flex",gap:8}}>
-                  <button className="hvr" onClick={()=>play(TRACKS.find(t=>t.artistId===2)||TRACKS[0])} style={{display:"flex",alignItems:"center",gap:5,padding:"7px 14px",borderRadius:9,border:"none",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",fontWeight:700,fontSize:11,cursor:"pointer"}}><IPlay s={11}/>Écouter</button>
-                  <button className="hvr" onClick={()=>{setArtistSel(ARTISTS[1]);setTeamTab("support");}} style={{display:"flex",alignItems:"center",gap:5,padding:"7px 14px",borderRadius:9,border:`1px solid ${C.accent}44`,background:`${C.accent}12`,color:C.accent,fontWeight:700,fontSize:11,cursor:"pointer"}}><IHeart s={11}/>Soutenir</button>
+                  <button className="hvr" onClick={()=>play(TRACKS.find(t=>t.artistId===2)||TRACKS[0])} style={{display:"flex",alignItems:"center",gap:5,padding:"6px 12px",borderRadius:8,border:"none",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",fontWeight:700,fontSize:11,cursor:"pointer"}}><IPlay s={10}/>Écouter</button>
+                  <button className="hvr" onClick={()=>{setArtistSel(ARTISTS[1]);setTeamTab("support");}} style={{display:"flex",alignItems:"center",gap:5,padding:"6px 12px",borderRadius:8,border:`1px solid ${C.accent}44`,background:`${C.accent}12`,color:C.accent,fontWeight:700,fontSize:11,cursor:"pointer"}}><IHeart s={10}/>Soutenir</button>
                 </div>
               </div>
             </div>
 
-            {/* Layout 2 colonnes */}
-            <div style={{display:"grid",gridTemplateColumns:"1fr 320px",gap:24}}>
-
-              {/* Colonne gauche — Titres */}
-              <div>
-                <SLabel label="Tendances" color={C.accent2} C={C}/>
-                <div style={{display:"flex",flexDirection:"column",gap:2,marginBottom:24}}>
-                  {TRACKS.map((t,i)=>(
-                    <div key={t.id} className="row" onClick={()=>play(t)} style={{display:"flex",alignItems:"center",gap:12,padding:"9px 10px",borderRadius:11,cursor:"pointer",transition:"background .2s",background:track.id===t.id&&playing?`${C.accent}08`:"transparent"}}>
-                      <div style={{width:18,textAlign:"center",fontSize:11,color:track.id===t.id&&playing?C.accent:C.muted,flexShrink:0}}>{track.id===t.id&&playing?<IPlay s={11}/>:i+1}</div>
-                      <div style={{width:34,height:34,borderRadius:8,overflow:"hidden",flexShrink:0,background:C.card}}>
-                        <img src={ARTISTS.find(a=>a.id===t.artistId)?.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-                      </div>
-                      <div style={{flex:1,minWidth:0}}>
-                        <div style={{fontSize:13,fontWeight:600,color:track.id===t.id&&playing?C.accent:C.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.title}</div>
-                        <div style={{fontSize:11,color:C.muted}}>{t.artist}</div>
-                      </div>
-                      <button onClick={e=>{e.stopPropagation();toggleLike(t.id);}} style={{background:"none",border:"none",cursor:"pointer",color:liked.has(t.id)?C.accent2:C.muted,padding:4,flexShrink:0}}><IHeart s={13} f={liked.has(t.id)}/></button>
-                      <div style={{fontSize:11,color:C.muted,minWidth:30,textAlign:"right",flexShrink:0}}>{fmt(t.duration)}</div>
-                    </div>
-                  ))}
+            {/* ── SECTION : Tendances ── */}
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
+              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent}44,transparent)`}}/>
+              <span style={{fontSize:11,fontWeight:700,color:C.accent,letterSpacing:1.5,textTransform:"uppercase"}}>Tendances</span>
+              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent}44,transparent)`}}/>
+            </div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:3,marginBottom:32}}>
+              {TRACKS.map((t,i)=>(
+                <div key={t.id} className="row" onClick={()=>play(t)} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 10px",borderRadius:10,cursor:"pointer",transition:"background .2s",background:track.id===t.id&&playing?`${C.accent}08`:"transparent"}}>
+                  <div style={{width:16,textAlign:"center",fontSize:11,color:track.id===t.id&&playing?C.accent:C.muted,flexShrink:0}}>{track.id===t.id&&playing?<IPlay s={10}/>:i+1}</div>
+                  <div style={{width:32,height:32,borderRadius:8,overflow:"hidden",flexShrink:0,background:C.card}}>
+                    <img src={ARTISTS.find(a=>a.id===t.artistId)?.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                  </div>
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{fontSize:12,fontWeight:600,color:track.id===t.id&&playing?C.accent:C.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.title}</div>
+                    <div style={{fontSize:10,color:C.muted}}>{t.artist}</div>
+                  </div>
+                  <button onClick={e=>{e.stopPropagation();toggleLike(t.id);}} style={{background:"none",border:"none",cursor:"pointer",color:liked.has(t.id)?C.accent2:C.muted,padding:3,flexShrink:0}}><IHeart s={12} f={liked.has(t.id)}/></button>
+                  <div style={{fontSize:10,color:C.muted,minWidth:28,textAlign:"right",flexShrink:0}}>{fmt(t.duration)}</div>
                 </div>
+              ))}
+            </div>
 
-                {/* Recherche artistes */}
-                <SLabel label="Explorer les artistes" color={C.accent} C={C}/>
-                <div style={{position:"relative",marginBottom:16,maxWidth:340}}>
-                  <div style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:C.muted}}><ISearch s={14}/></div>
-                  <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Artiste, genre…" style={{width:"100%",padding:"9px 12px 9px 34px",background:C.card,border:`1px solid ${C.border}`,borderRadius:11,color:C.text,fontSize:13}} onFocus={e=>e.target.style.borderColor=C.accent} onBlur={e=>e.target.style.borderColor=C.border}/>
-                </div>
-                <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(160px,1fr))",gap:12}}>
-                  {filteredArtists.map(a=>{
-                    const socials = ARTIST_SOCIALS[a.id]||{};
-                    return (
-                      <div key={a.id} className="card-hvr" style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",cursor:"pointer",transition:"all .25s"}}>
-                        <div style={{height:110,overflow:"hidden",position:"relative"}}>
-                          <img src={a.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-                          <div style={{position:"absolute",inset:0,background:`linear-gradient(to top,${C.bg}cc,transparent)`}}/>
-                          <div style={{position:"absolute",top:8,right:8,fontSize:9,padding:"2px 7px",borderRadius:20,background:"rgba(0,0,0,.6)",color:C.accent,fontWeight:700}}>{a.genre}</div>
-                        </div>
-                        <div style={{padding:"10px 12px"}}>
-                          <div style={{fontWeight:700,fontSize:13,marginBottom:6}}>{a.name}</div>
-                          {Object.keys(socials).length>0 && (
-                            <div style={{display:"flex",gap:4,marginBottom:8}}>
-                              {socials.instagram && <span style={{fontSize:9,padding:"2px 6px",borderRadius:20,background:"rgba(225,48,108,.12)",color:"#E1306C",fontWeight:600}}>Insta</span>}
-                              {socials.tiktok    && <span style={{fontSize:9,padding:"2px 6px",borderRadius:20,background:"rgba(105,201,208,.12)",color:"#69C9D0",fontWeight:600}}>TikTok</span>}
-                              {socials.snapchat  && <span style={{fontSize:9,padding:"2px 6px",borderRadius:20,background:"rgba(255,252,0,.1)",color:"#FFD700",fontWeight:600}}>Snap</span>}
-                            </div>
-                          )}
-                          <div style={{display:"flex",gap:6}}>
-                            <button className="hvr" onClick={()=>{setArtistSel(a);setTeamTab("support");}} style={{flex:1,padding:"6px 0",borderRadius:8,border:"none",background:`${C.accent}20`,color:C.accent,fontSize:10,fontWeight:700,cursor:"pointer"}}>Soutenir</button>
-                            <button className="hvr" onClick={()=>play(TRACKS.find(t=>t.artistId===a.id)||TRACKS[0])} style={{flex:1,padding:"6px 0",borderRadius:8,border:"none",background:`${C.accent2}20`,color:C.accent2,fontSize:10,fontWeight:700,cursor:"pointer"}}>Écouter</button>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+            {/* ── SECTION : En cours ── */}
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
+              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.purple}44,transparent)`}}/>
+              <span style={{fontSize:11,fontWeight:700,color:C.purple,letterSpacing:1.5,textTransform:"uppercase"}}>En cours</span>
+              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.purple}44,transparent)`}}/>
+            </div>
+            <div style={{padding:"16px",borderRadius:16,background:C.card,border:`1px solid ${C.border}`,marginBottom:32,display:"flex",alignItems:"center",gap:16}}>
+              <div style={{width:56,height:56,borderRadius:12,overflow:"hidden",flexShrink:0}}>
+                <img src={ARTISTS.find(a=>a.id===track.artistId)?.cover||""} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+              </div>
+              <div style={{flex:1,minWidth:0}}>
+                <div style={{fontSize:14,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",marginBottom:2}}>{track.title}</div>
+                <div style={{fontSize:12,color:C.muted,marginBottom:10}}>{track.artist}</div>
+                <div style={{height:2,borderRadius:1,background:C.border,overflow:"hidden"}}>
+                  <div style={{height:"100%",width:`${(progress/track.duration)*100}%`,background:`linear-gradient(to right,${C.accent},${C.accent2})`,transition:"width .5s"}}/>
                 </div>
               </div>
-
-              {/* Colonne droite — Mini player + infos */}
-              <div>
-                <SLabel label="En cours" color={C.accent} C={C}/>
-                <div style={{padding:"16px",borderRadius:16,background:C.card,border:`1px solid ${C.border}`,marginBottom:20}}>
-                  <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
-                    <div style={{width:52,height:52,borderRadius:12,overflow:"hidden",flexShrink:0}}>
-                      <img src={ARTISTS.find(a=>a.id===track.artistId)?.cover||""} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
-                    </div>
-                    <div style={{flex:1,minWidth:0}}>
-                      <div style={{fontSize:14,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{track.title}</div>
-                      <div style={{fontSize:12,color:C.muted}}>{track.artist}</div>
-                    </div>
-                  </div>
-                  <div style={{height:2,borderRadius:1,background:C.border,overflow:"hidden",marginBottom:14}}>
-                    <div style={{height:"100%",width:`${(progress/track.duration)*100}%`,background:`linear-gradient(to right,${C.accent},${C.accent2})`,transition:"width .5s"}}/>
-                  </div>
-                  <div style={{display:"flex",justifyContent:"center",gap:20,alignItems:"center"}}>
-                    <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i-1+TRACKS.length)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><IPrev s={14}/></button>
-                    <button onClick={()=>setPlay(p=>!p)} style={{width:38,height:38,borderRadius:"50%",border:"none",cursor:"pointer",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center"}}>{playing?<IPause s={14}/>:<IPlay s={14}/>}</button>
-                    <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i+1)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><INext s={14}/></button>
-                  </div>
-                </div>
-
-                <SLabel label="A découvrir" color={C.accent2} C={C}/>
-                <div style={{display:"flex",flexDirection:"column",gap:8}}>
-                  {ARTISTS.slice(0,3).map(a=>(
-                    <div key={a.id} onClick={()=>{setArtistSel(a);setTeamTab("support");}} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 12px",borderRadius:12,background:C.card,border:`1px solid ${C.border}`,cursor:"pointer",transition:"all .2s"}} className="row">
-                      <img src={a.cover} alt="" style={{width:36,height:36,borderRadius:9,objectFit:"cover",flexShrink:0}}/>
-                      <div style={{flex:1,minWidth:0}}>
-                        <div style={{fontSize:13,fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{a.name}</div>
-                        <div style={{fontSize:11,color:C.muted}}>{a.genre}</div>
-                      </div>
-                      <IHeart s={12}/>
-                    </div>
-                  ))}
-                </div>
+              <div style={{display:"flex",gap:14,alignItems:"center",flexShrink:0}}>
+                <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i-1+TRACKS.length)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><IPrev s={14}/></button>
+                <button onClick={()=>setPlay(p=>!p)} style={{width:36,height:36,borderRadius:"50%",border:"none",cursor:"pointer",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center"}}>{playing?<IPause s={14}/>:<IPlay s={14}/>}</button>
+                <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i+1)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><INext s={14}/></button>
               </div>
             </div>
+
+            {/* ── SECTION : Explorer ── */}
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
+              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent}44,transparent)`}}/>
+              <span style={{fontSize:11,fontWeight:700,color:C.accent,letterSpacing:1.5,textTransform:"uppercase"}}>Explorer</span>
+              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent}44,transparent)`}}/>
+            </div>
+            <div style={{position:"relative",marginBottom:16,maxWidth:380}}>
+              <div style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:C.muted}}><ISearch s={13}/></div>
+              <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Artiste, genre…" style={{width:"100%",padding:"9px 12px 9px 32px",background:C.card,border:`1px solid ${C.border}`,borderRadius:10,color:C.text,fontSize:13}} onFocus={e=>e.target.style.borderColor=C.accent} onBlur={e=>e.target.style.borderColor=C.border}/>
+            </div>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(170px,1fr))",gap:12,marginBottom:32}}>
+              {filteredArtists.map(a=>{
+                const socials=ARTIST_SOCIALS[a.id]||{};
+                return(
+                  <div key={a.id} className="card-hvr" style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:14,overflow:"hidden",cursor:"pointer",transition:"all .25s"}}>
+                    <div style={{height:110,overflow:"hidden",position:"relative"}}>
+                      <img src={a.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                      <div style={{position:"absolute",inset:0,background:`linear-gradient(to top,${C.bg}cc,transparent)`}}/>
+                      <div style={{position:"absolute",top:7,right:7,fontSize:9,padding:"2px 6px",borderRadius:20,background:"rgba(0,0,0,.65)",color:C.accent,fontWeight:700}}>{a.genre}</div>
+                    </div>
+                    <div style={{padding:"10px 12px"}}>
+                      <div style={{fontWeight:700,fontSize:13,marginBottom:5}}>{a.name}</div>
+                      {Object.keys(socials).length>0&&(
+                        <div style={{display:"flex",gap:4,marginBottom:7}}>
+                          {socials.instagram&&<span style={{fontSize:9,padding:"2px 5px",borderRadius:20,background:"rgba(225,48,108,.12)",color:"#E1306C",fontWeight:600}}>Insta</span>}
+                          {socials.tiktok&&<span style={{fontSize:9,padding:"2px 5px",borderRadius:20,background:"rgba(105,201,208,.12)",color:"#69C9D0",fontWeight:600}}>TikTok</span>}
+                          {socials.snapchat&&<span style={{fontSize:9,padding:"2px 5px",borderRadius:20,background:"rgba(255,252,0,.1)",color:"#FFD700",fontWeight:600}}>Snap</span>}
+                        </div>
+                      )}
+                      <div style={{display:"flex",gap:5}}>
+                        <button className="hvr" onClick={()=>{setArtistSel(a);setTeamTab("support");}} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${C.accent}20`,color:C.accent,fontSize:10,fontWeight:700,cursor:"pointer"}}>Soutenir</button>
+                        <button className="hvr" onClick={()=>play(TRACKS.find(t=>t.artistId===a.id)||TRACKS[0])} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${C.accent2}20`,color:C.accent2,fontSize:10,fontWeight:700,cursor:"pointer"}}>Écouter</button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* ── SECTION : Nouvelles pépites ── */}
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
+              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.gold}44,transparent)`}}/>
+              <span style={{fontSize:11,fontWeight:700,color:C.gold,letterSpacing:1.5,textTransform:"uppercase"}}>Nouvelles pépites</span>
+              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.gold}44,transparent)`}}/>
+            </div>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))",gap:10,marginBottom:32}}>
+              {ARTISTS.slice(2,5).map((a,i)=>(
+                <div key={a.id} className="row" onClick={()=>play(TRACKS.find(t=>t.artistId===a.id)||TRACKS[0])} style={{display:"flex",alignItems:"center",gap:12,padding:"12px",borderRadius:12,background:C.card,border:`1px solid ${C.border}`,cursor:"pointer",transition:"all .2s"}}>
+                  <img src={a.cover} alt="" style={{width:42,height:42,borderRadius:10,objectFit:"cover",flexShrink:0}}/>
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{fontSize:13,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{a.name}</div>
+                    <div style={{fontSize:11,color:C.muted}}>{a.genre}</div>
+                  </div>
+                  <div style={{fontSize:9,padding:"2px 8px",borderRadius:20,background:`${C.gold}18`,color:C.gold,fontWeight:700,flexShrink:0}}>Nouveau</div>
+                </div>
+              ))}
+            </div>
+
+            {/* ── SECTION : Les plus streamés ── */}
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
+              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent2}44,transparent)`}}/>
+              <span style={{fontSize:11,fontWeight:700,color:C.accent2,letterSpacing:1.5,textTransform:"uppercase"}}>Les plus streamés</span>
+              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent2}44,transparent)`}}/>
+            </div>
+            <div style={{display:"flex",flexDirection:"column",gap:2}}>
+              {[...TRACKS].sort((a,b)=>b.plays-a.plays).map((t,i)=>(
+                <div key={t.id} className="row" onClick={()=>play(t)} style={{display:"flex",alignItems:"center",gap:12,padding:"9px 10px",borderRadius:10,cursor:"pointer",transition:"background .2s"}}>
+                  <div style={{width:20,textAlign:"center",fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:13,color:i<3?C.accent2:C.muted,flexShrink:0}}>#{i+1}</div>
+                  <div style={{width:32,height:32,borderRadius:8,overflow:"hidden",flexShrink:0}}>
+                    <img src={ARTISTS.find(a=>a.id===t.artistId)?.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                  </div>
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{fontSize:12,fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t.title}</div>
+                    <div style={{fontSize:10,color:C.muted}}>{t.artist}</div>
+                  </div>
+                  <div style={{fontSize:11,color:C.accent2,fontWeight:600,flexShrink:0}}>{fmtK(t.plays)} écoutes</div>
+                </div>
+              ))}
+            </div>
+
           </div>
+        )}
 
         {/* Support */}
         {mode==="team" && teamTab==="support" && (
@@ -475,83 +506,76 @@ export default function Vizion2Unified() {
 
         {/* ════ ARTIST SCREENS ════ */}
 
-        {/* Publier — Audio + Vidéo fusionnés */}
+        {/* Publier — Audio en haut, Vidéo en dessous */}
         {mode==="artist" && artTab==="upload" && (
-          <div style={{padding:"24px 32px",maxWidth:900,margin:"0 auto",animation:"fadeUp .35s ease both",width:"100%"}}>
-            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:24,marginBottom:4}}>Publier du contenu</div>
-            <div style={{color:C.muted,fontSize:13,marginBottom:24}}>Audio et vidéo — gère tout depuis cette page</div>
+          <div style={{padding:"24px 32px",maxWidth:760,margin:"0 auto",animation:"fadeUp .35s ease both",width:"100%"}}>
+            <div style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:22,marginBottom:4}}>Publier du contenu</div>
+            <div style={{color:C.muted,fontSize:13,marginBottom:24}}>Audio et vidéo depuis cette même page</div>
 
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
-
-              {/* ── AUDIO ── */}
-              <div>
-                <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}>
-                  <div style={{width:3,height:14,borderRadius:2,background:C.accent}}/>
-                  <span style={{fontWeight:700,fontSize:15}}>Titre Audio</span>
-                  <span style={{fontSize:11,color:C.muted}}>MP3 · WAV · FLAC</span>
+            {/* AUDIO */}
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
+              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent}44,transparent)`}}/>
+              <span style={{fontSize:11,fontWeight:700,color:C.accent,letterSpacing:1.5,textTransform:"uppercase"}}>Titre Audio</span>
+              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent}44,transparent)`}}/>
+            </div>
+            {audioOk && <SuccessBanner text="Titre publié avec succès !" C={C}/>}
+            <div style={{background:C.card,borderRadius:18,border:`1px solid ${C.border}`,padding:"20px",marginBottom:32}}>
+              <div onClick={()=>audioRef.current?.click()} style={{border:`2px dashed ${audioFile?C.accent:C.border}`,borderRadius:12,padding:"22px",textAlign:"center",cursor:"pointer",marginBottom:18,transition:"all .2s",background:audioFile?`${C.accent}06`:"transparent"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=audioFile?C.accent:C.border}>
+                <div style={{color:audioFile?C.accent:C.muted,marginBottom:6,display:"flex",justifyContent:"center"}}><IUpload s={24}/></div>
+                {audioFile?<><div style={{fontWeight:700,color:C.accent}}>{audioFile.name}</div><div style={{fontSize:12,color:C.muted,marginTop:2}}>{(audioFile.size/1024/1024).toFixed(1)} MB</div></>:<><div style={{fontWeight:600,marginBottom:2}}>Clique pour choisir ton fichier audio</div><div style={{fontSize:12,color:C.muted}}>MP3 · WAV · FLAC · Max 50MB</div></>}
+                <input ref={audioRef} type="file" accept="audio/*" onChange={e=>{const f=e.target.files?.[0];if(f){setAudioFile(f);if(!audioTitle)setAudioTitle(f.name.replace(/\.[^.]+$/,""));}}} style={{display:"none"}}/>
+              </div>
+              <div style={{display:"grid",gridTemplateColumns:"80px 1fr",gap:14,marginBottom:16}}>
+                <div>
+                  <FLabel C={C}>Pochette</FLabel>
+                  <div onClick={()=>coverRef.current?.click()} style={{width:80,height:80,borderRadius:11,overflow:"hidden",background:C.card2,border:`2px dashed ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=C.border}>
+                    {coverPrev?<img src={coverPrev} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:<div style={{color:C.muted,textAlign:"center"}}><IUpload s={16}/><div style={{fontSize:9,marginTop:2}}>Ajouter</div></div>}
+                  </div>
+                  <input ref={coverRef} type="file" accept="image/*" onChange={e=>{const f=e.target.files?.[0];if(f)setCoverPrev(URL.createObjectURL(f));}} style={{display:"none"}}/>
                 </div>
-                {audioOk && <SuccessBanner text="Titre publié !" C={C}/>}
-                <div style={{background:C.card,borderRadius:18,border:`1px solid ${C.border}`,padding:"20px"}}>
-                  <div onClick={()=>audioRef.current?.click()} style={{border:`2px dashed ${audioFile?C.accent:C.border}`,borderRadius:12,padding:"20px",textAlign:"center",cursor:"pointer",marginBottom:16,transition:"all .2s",background:audioFile?`${C.accent}06`:"transparent"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=audioFile?C.accent:C.border}>
-                    <div style={{color:audioFile?C.accent:C.muted,marginBottom:6,display:"flex",justifyContent:"center"}}><IUpload s={22}/></div>
-                    {audioFile?<><div style={{fontWeight:700,color:C.accent,fontSize:13}}>{audioFile.name}</div><div style={{fontSize:11,color:C.muted}}>{(audioFile.size/1024/1024).toFixed(1)} MB</div></>:<><div style={{fontWeight:600,fontSize:13,marginBottom:2}}>Choisir un fichier audio</div><div style={{fontSize:11,color:C.muted}}>Max 50MB</div></>}
-                    <input ref={audioRef} type="file" accept="audio/*" onChange={e=>{const f=e.target.files?.[0];if(f){setAudioFile(f);if(!audioTitle)setAudioTitle(f.name.replace(/\.[^.]+$/,""));}}} style={{display:"none"}}/>
-                  </div>
-                  <div style={{display:"grid",gridTemplateColumns:"70px 1fr",gap:12,marginBottom:14}}>
-                    <div>
-                      <FLabel C={C}>Pochette</FLabel>
-                      <div onClick={()=>coverRef.current?.click()} style={{width:70,height:70,borderRadius:10,overflow:"hidden",background:C.card2,border:`2px dashed ${C.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=C.border}>
-                        {coverPrev?<img src={coverPrev} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>:<div style={{color:C.muted,textAlign:"center",fontSize:9}}><IUpload s={14}/><div>Ajouter</div></div>}
-                      </div>
-                      <input ref={coverRef} type="file" accept="image/*" onChange={e=>{const f=e.target.files?.[0];if(f)setCoverPrev(URL.createObjectURL(f));}} style={{display:"none"}}/>
-                    </div>
-                    <div style={{display:"flex",flexDirection:"column",gap:10}}>
-                      <div><FLabel C={C}>Titre *</FLabel><FInput value={audioTitle} onChange={setAudioTitle} placeholder="Ex: Lumière Froide" C={C}/></div>
-                      <div>
-                        <FLabel C={C}>Accès</FLabel>
-                        <div style={{display:"flex",gap:6}}>
-                          {[["public","Public"],["super","Super Team"],["vip","VIP"]].map(([v,l])=>(
-                            <button key={v} onClick={()=>setAudioAccess(v)} style={{flex:1,padding:"6px 4px",borderRadius:8,border:`2px solid ${audioAccess===v?C.accent:C.border}`,background:audioAccess===v?`${C.accent}15`:C.card2,color:audioAccess===v?C.accent:C.muted,fontSize:10,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>{l}</button>
-                          ))}
-                        </div>
-                      </div>
+                <div style={{display:"flex",flexDirection:"column",gap:10}}>
+                  <div><FLabel C={C}>Titre *</FLabel><FInput value={audioTitle} onChange={setAudioTitle} placeholder="Ex: Lumière Froide" C={C}/></div>
+                  <div>
+                    <FLabel C={C}>Accès</FLabel>
+                    <div style={{display:"flex",gap:7}}>
+                      {[["public","Public"],["super","Super Team"],["vip","VIP"]].map(([v,l])=>(
+                        <button key={v} onClick={()=>setAudioAccess(v)} style={{flex:1,padding:"7px 4px",borderRadius:9,border:`2px solid ${audioAccess===v?C.accent:C.border}`,background:audioAccess===v?`${C.accent}15`:C.card2,color:audioAccess===v?C.accent:C.muted,fontSize:11,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>{l}</button>
+                      ))}
                     </div>
                   </div>
-                  <BigBtn onClick={uploadAudio} disabled={!audioFile||!audioTitle||audioLoading} loading={audioLoading} color={C.accent}><IUpload s={14}/>Publier le titre</BigBtn>
                 </div>
               </div>
+              <BigBtn onClick={uploadAudio} disabled={!audioFile||!audioTitle||audioLoading} loading={audioLoading} color={C.accent}><IUpload s={14}/>Publier le titre</BigBtn>
+            </div>
 
-              {/* ── VIDEO ── */}
-              <div>
-                <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:14}}>
-                  <div style={{width:3,height:14,borderRadius:2,background:C.accent2}}/>
-                  <span style={{fontWeight:700,fontSize:15}}>Vidéo</span>
-                  <span style={{fontSize:11,color:C.muted}}>MP4 · MOV · Max 500MB</span>
-                </div>
-                <div style={{padding:"8px 12px",borderRadius:10,background:`${C.accent}08`,border:`1px solid ${C.accent}22`,marginBottom:12,fontSize:11,color:C.muted}}>
-                  <span style={{color:C.accent,fontWeight:600}}>Super Team</span> → Clips · <span style={{color:C.accent2,fontWeight:600}}>VIP</span> → Live + Making of
-                </div>
-                {videoOk && <SuccessBanner text="Vidéo publiée !" C={C}/>}
-                <div style={{background:C.card,borderRadius:18,border:`1px solid ${C.border}`,padding:"20px"}}>
-                  <div onClick={()=>videoRef.current?.click()} style={{border:`2px dashed ${videoFile?C.accent2:C.border}`,borderRadius:12,padding:"20px",textAlign:"center",cursor:"pointer",marginBottom:16,transition:"all .2s",background:videoFile?`${C.accent2}06`:"transparent"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent2} onMouseLeave={e=>e.currentTarget.style.borderColor=videoFile?C.accent2:C.border}>
-                    <div style={{color:videoFile?C.accent2:C.muted,marginBottom:6,display:"flex",justifyContent:"center"}}><IVideo s={22}/></div>
-                    {videoFile?<><div style={{fontWeight:700,color:C.accent2,fontSize:13}}>{videoFile.name}</div><div style={{fontSize:11,color:C.muted}}>{(videoFile.size/1024/1024).toFixed(1)} MB</div></>:<><div style={{fontWeight:600,fontSize:13,marginBottom:2}}>Choisir une vidéo</div><div style={{fontSize:11,color:C.muted}}>Max 500MB</div></>}
-                    <input ref={videoRef} type="file" accept="video/*" onChange={e=>{const f=e.target.files?.[0];if(f){setVideoFile(f);if(!videoTitle)setVideoTitle(f.name.replace(/\.[^.]+$/,""));}}} style={{display:"none"}}/>
+            {/* VIDEO */}
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:12}}>
+              <div style={{height:1,flex:1,background:`linear-gradient(to right,${C.accent2}44,transparent)`}}/>
+              <span style={{fontSize:11,fontWeight:700,color:C.accent2,letterSpacing:1.5,textTransform:"uppercase"}}>Vidéo</span>
+              <div style={{height:1,flex:1,background:`linear-gradient(to left,${C.accent2}44,transparent)`}}/>
+            </div>
+            <div style={{padding:"8px 14px",borderRadius:10,background:`${C.accent2}08`,border:`1px solid ${C.accent2}22`,marginBottom:14,fontSize:12,color:C.muted}}>
+              <span style={{color:C.accent2,fontWeight:600}}>Super Team</span> → Clips officiels &nbsp;·&nbsp; <span style={{color:"#F5C842",fontWeight:600}}>VIP</span> → Live studio + Making of
+            </div>
+            {videoOk && <SuccessBanner text="Vidéo publiée avec succès !" C={C}/>}
+            <div style={{background:C.card,borderRadius:18,border:`1px solid ${C.border}`,padding:"20px"}}>
+              <div onClick={()=>videoRef.current?.click()} style={{border:`2px dashed ${videoFile?C.accent2:C.border}`,borderRadius:12,padding:"22px",textAlign:"center",cursor:"pointer",marginBottom:16,transition:"all .2s",background:videoFile?`${C.accent2}06`:"transparent"}} onMouseEnter={e=>e.currentTarget.style.borderColor=C.accent2} onMouseLeave={e=>e.currentTarget.style.borderColor=videoFile?C.accent2:C.border}>
+                <div style={{color:videoFile?C.accent2:C.muted,marginBottom:6,display:"flex",justifyContent:"center"}}><IVideo s={24}/></div>
+                {videoFile?<><div style={{fontWeight:700,color:C.accent2}}>{videoFile.name}</div><div style={{fontSize:12,color:C.muted,marginTop:2}}>{(videoFile.size/1024/1024).toFixed(1)} MB</div></>:<><div style={{fontWeight:600,marginBottom:2}}>Clique pour choisir ta vidéo</div><div style={{fontSize:12,color:C.muted}}>MP4 · MOV · Max 500MB</div></>}
+                <input ref={videoRef} type="file" accept="video/*" onChange={e=>{const f=e.target.files?.[0];if(f){setVideoFile(f);if(!videoTitle)setVideoTitle(f.name.replace(/\.[^.]+$/,""));}}} style={{display:"none"}}/>
+              </div>
+              <div style={{display:"flex",flexDirection:"column",gap:12,marginBottom:16}}>
+                <div><FLabel C={C}>Titre de la vidéo *</FLabel><FInput value={videoTitle} onChange={setVideoTitle} placeholder="Ex: Lumière Froide — Clip officiel" C={C}/></div>
+                <div>
+                  <FLabel C={C}>Accès</FLabel>
+                  <div style={{display:"flex",gap:7}}>
+                    {[["public","Public"],["super","Super Team"],["vip","VIP"]].map(([v,l])=>(
+                      <button key={v} onClick={()=>setVideoAccess(v)} style={{flex:1,padding:"7px 4px",borderRadius:9,border:`2px solid ${videoAccess===v?C.accent2:C.border}`,background:videoAccess===v?`${C.accent2}15`:C.card2,color:videoAccess===v?C.accent2:C.muted,fontSize:11,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>{l}</button>
+                    ))}
                   </div>
-                  <div style={{display:"flex",flexDirection:"column",gap:10,marginBottom:14}}>
-                    <div><FLabel C={C}>Titre *</FLabel><FInput value={videoTitle} onChange={setVideoTitle} placeholder="Ex: Clip officiel — Lumière Froide" C={C}/></div>
-                    <div>
-                      <FLabel C={C}>Accès</FLabel>
-                      <div style={{display:"flex",gap:6}}>
-                        {[["public","Public"],["super","Super Team"],["vip","VIP"]].map(([v,l])=>(
-                          <button key={v} onClick={()=>setVideoAccess(v)} style={{flex:1,padding:"6px 4px",borderRadius:8,border:`2px solid ${videoAccess===v?C.accent2:C.border}`,background:videoAccess===v?`${C.accent2}15`:C.card2,color:videoAccess===v?C.accent2:C.muted,fontSize:10,fontWeight:700,cursor:"pointer",transition:"all .2s"}}>{l}</button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <BigBtn onClick={uploadVideo} disabled={!videoFile||!videoTitle||videoLoading} loading={videoLoading} color={C.accent2}><IVideo s={14}/>Publier la vidéo</BigBtn>
                 </div>
               </div>
+              <BigBtn onClick={uploadVideo} disabled={!videoFile||!videoTitle||videoLoading} loading={videoLoading} color={C.accent2}><IVideo s={14}/>Publier la vidéo</BigBtn>
             </div>
           </div>
         )}
