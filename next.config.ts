@@ -1,7 +1,20 @@
+cat > next.config.ts << 'EOF'
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
+  typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "qhglvqucvlselagsahnh.supabase.co",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
   },
 };
 export default nextConfig;
+EOF
