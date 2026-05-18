@@ -27,6 +27,13 @@ const ARTISTS = [
 ];
 const TRACKS = [
   { id:1, title:"Soucis",    artist:"ZAK&DIEGO", artistId:1, duration:209, plays:0,
+    audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/SOUCIS%20MIX_V2_MASTER.mp3",
+    cover:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/cover/ZAK%26DIEGO%20SOUCIS%20%20COVER.png" },
+  { id:2, title:"Bali Baba", artist:"Carlton",   artistId:2, duration:177, plays:0,
+    audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/BALI%20%20BABA%203.mp3",
+    cover:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/cover/CARLTON%20bailababa%20cover.JPG" },
+];[
+  { id:1, title:"Soucis",    artist:"ZAK&DIEGO", artistId:1, duration:209, plays:0,
     audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/SOUCIS%20MIX_V2_MASTER.mp3" },
   { id:2, title:"Bali Baba", artist:"Carlton",   artistId:2, duration:177, plays:0,
     audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/BALI%20%20BABA%203.mp3" },
