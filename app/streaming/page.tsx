@@ -354,8 +354,8 @@ playerRef.current.load();
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
                 {filtered.map(a=>(
                   <div key={a.id} className="ch" onClick={()=>window.location.href=`/artiste/${a.id===1?"zak-diego":"carlton"}`} style={{background:C.card,border:`1px solid ${C.border}`,borderRadius:13,overflow:"hidden",cursor:"pointer",transition:"all .25s"}}>
-                    <div style={{width:"100%",height:"88%",objectFit:"cover",objectPosition:"center 20%"}}>
-                      <img src={a.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+                    <div style={{width:"100%",height:90,position:"relative",overflow:"hidden"}}>
+                     <img src={a.cover} alt="" style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center 20%"}}/>
                       <div style={{position:"absolute",inset:0,background:`linear-gradient(to top,${C.bg}cc,transparent)`}}/>
                       <div style={{position:"absolute",top:6,right:6,fontSize:8,padding:"1px 6px",borderRadius:20,background:"rgba(0,0,0,.65)",color:C.accent,fontWeight:700}}>{a.genre.split("/")[0].trim()}</div>
                     </div>
