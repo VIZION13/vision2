@@ -119,8 +119,7 @@ export default function Vizion2() {
   const [sOk,setSOk]=useState(false);
   const [paying,setPaying]=useState(false);
   const aR=useRef<HTMLInputElement>(null);
-  const playerRef = useRef<HTMLAudioElement | null>(null);
-  useEffect(()=>{ playerRef.current = new Audio(); },[]);
+  const playerRef = useRef<HTMLAudioElement>(typeof window !== "undefined" ? new Audio() : null as any);
   const cR=useRef<HTMLInputElement>(null);
   const vR=useRef<HTMLInputElement>(null);
   const [aF,setAF]=useState<File|null>(null);
