@@ -17,11 +17,11 @@ const AC = { bg:"#0A0A14",surface:"#10101E",card:"#161628",card2:"#1C1C34",borde
 
 const ARTISTS = [
   { id:1, name:"ZAK&DIEGO", genre:"Pop Urbain / Afro", city:"Marseille", followers:0, plays:0, supporters:0,
-    cover:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/avatar/zak-diego.jpg",
+    cover:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/avatar/ZAK%26DIEGO%20PHOTO%20FICHE%20ARTISTE1.jpg",
     bio:"Duo aux sonorités afro-urbaines. Marseille dans le sang.",
     instagram:"@zakdiego", tiktok:"@zakdiego" },
   { id:2, name:"Carlton", genre:"Afro Urbain / DJ", city:"Marseille", followers:0, plays:0, supporters:0,
-    cover:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/avatar/carlton.jpg",
+    cover:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/avatar/CARLTON%20PHOTO%20FICHE%20ARTISTE1.jpg",
     bio:"DJ et producteur afro-urbain basé à Marseille.",
     instagram:"@carltonofficial", tiktok:"@carlton" },
 ];
