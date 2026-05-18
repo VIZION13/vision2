@@ -119,6 +119,7 @@ export default function Vizion2() {
   const [sOk,setSOk]=useState(false);
   const [paying,setPaying]=useState(false);
   const aR=useRef<HTMLInputElement>(null);
+  const playerRef = useRef<HTMLAudioElement | null>(null);
   const cR=useRef<HTMLInputElement>(null);
   const vR=useRef<HTMLInputElement>(null);
   const [aF,setAF]=useState<File|null>(null);
@@ -151,7 +152,15 @@ export default function Vizion2() {
     return()=>clearInterval(iv);
   },[playing,track]);
 
-  const play=(t:any)=>{setTrack(t);setProg(0);setPlay(true);};
+  const play = (t:any) => {
+  setTrack(t);
+  setProg(0);
+  setPlay(true);
+  if(playerRef.current) {
+    playerRef.current.src = t.audio || "";
+    playerRef.current.play();
+  }
+};
   const tLike=(id:number)=>setLiked(s=>{const n=new Set(s);n.has(id)?n.delete(id):n.add(id);return n;});
   const pay=(cb:()=>void)=>{setPaying(true);setTimeout(()=>{setPaying(false);cb();},2000);};
   const doAuth=()=>{
@@ -594,7 +603,7 @@ export default function Vizion2() {
       </div>
 
       {/* PLAYER */}
-      {playing&&(
+      <audio ref={playerRef} onTimeUpdate={e=>setProg(Math.floor((e.target as HTMLAudioElement).currentTime))} onEnded={()=>setPlay(false)}/>{playing&&(
         <div style={{position:"relative",zIndex:50,flexShrink:0,height:isMobile?56:68,background:`${C.surface}f8`,backdropFilter:"blur(20px)",borderTop:`1px solid ${C.border}`,display:"flex",alignItems:"center",padding:isMobile?"0 12px":"0 20px",marginBottom:isMobile?54:0,transition:"all .4s"}}>
           <div style={{display:"flex",alignItems:"center",gap:8,width:isMobile?120:180,flexShrink:0}}>
             <div style={{width:isMobile?30:36,height:isMobile?30:36,borderRadius:8,overflow:"hidden",flexShrink:0}}><img src={ARTISTS.find(a=>a.id===track.artistId)?.cover||""} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/></div>
@@ -606,7 +615,12 @@ export default function Vizion2() {
           <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
             <div style={{display:"flex",alignItems:"center",gap:isMobile?12:16}}>
               <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i-1+TRACKS.length)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><IPrev s={isMobile?12:14}/></button>
-              <button onClick={()=>setPlay(p=>!p)} style={{width:isMobile?28:32,height:isMobile?28:32,borderRadius:"50%",border:"none",cursor:"pointer",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center"}}>{playing?<IPause s={isMobile?11:13}/>:<IPlay s={isMobile?11:13}/>}</button>
+              <button onClick={()=>{
+  if(playerRef.current){
+    playing ? playerRef.current.pause() : playerRef.current.play();
+  }
+  setPlay(pp=>!pp);
+}} style={{width:isMobile?28:32,height:isMobile?28:32,borderRadius:"50%",border:"none",cursor:"pointer",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center"}}>{playing?<IPause s={isMobile?11:13}/>:<IPlay s={isMobile?11:13}/>}</button>
               <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i+1)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><INext s={isMobile?12:14}/></button>
             </div>
             <div style={{width:isMobile?"75%":"100%",maxWidth:380,height:2,borderRadius:1,background:C.border,overflow:"hidden"}}>
