@@ -314,7 +314,7 @@ playerRef.current.load();
                         <div style={{fontSize:10,color:C.muted}}>{track.artist}</div>
                       </div>
                     </div>
-                    <div style={{height:2,borderRadius:1,background:C.border,overflow:"hidden",marginBottom:10}}><div style={{height:"100%",width:`${(prog/track.duration)*100}%`,background:`linear-gradient(to right,${C.accent},${C.accent2})`,transition:"width .5s"}}/></div>
+                    <input type="range" min={0} max={track.duration} value={prog} onChange={e=>{const v=Number(e.target.value);setProg(v);if(playerRef.current)playerRef.current.currentTime=v;}} style={{width:"100%",background:`linear-gradient(to right,${C.accent} ${(prog/track.duration)*100}%,${C.border} ${(prog/track.duration)*100}%)`,marginBottom:10,cursor:"pointer"}}/>
                     <div style={{display:"flex",justifyContent:"center",gap:14,alignItems:"center"}}>
                       <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i-1+TRACKS.length)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><IPrev s={13}/></button>
                       <button onClick={()=>{if(playerRef.current){if(!playerRef.current.paused){playerRef.current.pause();setPlay(false);}else{playerRef.current.play().catch(()=>{});setPlay(true);}}}} style={{width:32,height:32,borderRadius:"50%",border:"none",cursor:"pointer",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center"}}>{playing?<IPause s={12}/>:<IPlay s={12}/>}</button>
