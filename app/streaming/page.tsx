@@ -29,7 +29,7 @@ const TRACKS = [
   { id:1, title:"Soucis",    artist:"ZAK&DIEGO", artistId:1, duration:209, plays:0,
     audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/SOUCIS%20MIX_V2_MASTER.mp3" },
   { id:2, title:"Bali Baba", artist:"Carlton",   artistId:2, duration:177, plays:0,
-    audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/BALI%20%20BABA%203.mp3" },
+    audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/BALI%20BABA%203.mp3" },
 ];
 const PLANS = [
   { id:"team",  label:"Team",       price:3,  perks:["Écoute illimitée","Badge Team","Newsletter"] },
@@ -305,7 +305,7 @@ export default function Vizion2() {
                     <div style={{height:2,borderRadius:1,background:C.border,overflow:"hidden",marginBottom:10}}><div style={{height:"100%",width:`${(prog/track.duration)*100}%`,background:`linear-gradient(to right,${C.accent},${C.accent2})`,transition:"width .5s"}}/></div>
                     <div style={{display:"flex",justifyContent:"center",gap:14,alignItems:"center"}}>
                       <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i-1+TRACKS.length)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><IPrev s={13}/></button>
-                      <button onClick={()=>setPlay(p=>!p)} style={{width:32,height:32,borderRadius:"50%",border:"none",cursor:"pointer",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center"}}>{playing?<IPause s={12}/>:<IPlay s={12}/>}</button>
+                      <button onClick={()=>{if(playerRef.current){if(!playerRef.current.paused){playerRef.current.pause();setPlay(false);}else{playerRef.current.play().catch(()=>{});setPlay(true);}}}} style={{width:32,height:32,borderRadius:"50%",border:"none",cursor:"pointer",background:`linear-gradient(135deg,${C.accent},${C.accent2})`,color:"#fff",display:"flex",alignItems:"center",justifyContent:"center"}}>{playing?<IPause s={12}/>:<IPlay s={12}/>}</button>
                       <button onClick={()=>{const i=TRACKS.findIndex(t=>t.id===track.id);play(TRACKS[(i+1)%TRACKS.length]);}} style={{background:"none",border:"none",cursor:"pointer",color:C.muted}}><INext s={13}/></button>
                     </div>
                   </div>
