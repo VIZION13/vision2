@@ -360,7 +360,7 @@ playerRef.current.load();
                       <div style={{position:"absolute",top:6,right:6,fontSize:8,padding:"1px 6px",borderRadius:20,background:"rgba(0,0,0,.65)",color:C.accent,fontWeight:700}}>{a.genre.split("/")[0].trim()}</div>
                     </div>
                     <div style={{padding:"8px 10px"}}>
-                      <div style={{fontWeight:700,fontSize:12,marginBottom:4}}>{a.name}</div>
+                      <a href={`/artiste/${a.id===1?"zak-diego":"carlton"}`} style={{fontWeight:700,fontSize:12,marginBottom:4,color:C.text,textDecoration:"none"}}>{a.name}</a>
                       <div style={{display:"flex",gap:5,marginBottom:6}}>
                         {a.instagram&&<span style={{fontSize:8,padding:"1px 5px",borderRadius:20,background:"rgba(225,48,108,.12)",color:"#E1306C",fontWeight:600}}>Insta</span>}
                         {a.tiktok&&<span style={{fontSize:8,padding:"1px 5px",borderRadius:20,background:"rgba(105,201,208,.12)",color:"#69C9D0",fontWeight:600}}>TikTok</span>}
