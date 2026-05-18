@@ -26,8 +26,10 @@ const ARTISTS = [
     instagram:"@carltonofficial", tiktok:"@carlton" },
 ];
 const TRACKS = [
-  { id:1, title:"Titre à venir", artist:"ZAK&DIEGO", artistId:1, duration:200, plays:0 },
-  { id:2, title:"Titre à venir", artist:"Carlton",   artistId:2, duration:180, plays:0 },
+  { id:1, title:"Soucis",    artist:"ZAK&DIEGO", artistId:1, duration:209, plays:0,
+    audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/SOUCIS MIX_V2_MASTER.mp3" },
+  { id:2, title:"Bali Baba", artist:"Carlton",   artistId:2, duration:177, plays:0,
+    audio:"https://qhglvqucvlselagsahnh.supabase.co/storage/v1/object/public/audio/BALI BABA 3.mp3" },
 ];
 const PLANS = [
   { id:"team",  label:"Team",       price:3,  perks:["Écoute illimitée","Badge Team","Newsletter"] },
