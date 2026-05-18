@@ -147,10 +147,14 @@ export default function Vizion2() {
   const pad=isMobile?"12px 14px":isTablet?"16px 20px":"22px 28px";
 
   useEffect(()=>{
-    if(!playing)return;
-    const iv=setInterval(()=>setProg(p=>p>=track.duration?(setPlay(false),0):p+1),1000);
-    return()=>clearInterval(iv);
-  },[playing,track]);
+  if(!playing) return;
+  const iv=setInterval(()=>{
+    if(playerRef.current && !playerRef.current.paused){
+      setProg(Math.floor(playerRef.current.currentTime));
+    }
+  },500);
+  return()=>clearInterval(iv);
+},[playing,track]);
 
   const play=(t:any)=>{
     setTrack(t);setProg(0);setPlay(true);
