@@ -282,7 +282,7 @@ playerRef.current.load();
                   {TRACKS.map((t,i)=>(
                     <div key={t.id} className="row" onClick={()=>play(t)} style={{display:"flex",alignItems:"center",gap:10,padding:"8px 10px",borderRadius:9,cursor:"pointer",transition:"background .2s",background:track.id===t.id&&playing?`${C.accent}08`:"transparent"}}>
                       <div style={{width:14,textAlign:"center" as const,fontSize:10,color:track.id===t.id&&playing?C.accent:C.muted,flexShrink:0}}>{track.id===t.id&&playing?<IPlay s={9}/>:i+1}</div>
-                      <div style={{width:28,height:28,borderRadius:7,overflow:"hidden",flexShrink:0,background:C.card2}}><img src={ARTISTS.find(a=>a.id===t.artistId)?.cover||""} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/></div>
+                      <div style={{width:28,height:28,borderRadius:7,overflow:"hidden",flexShrink:0,background:C.card2}}><img src={t.cover||ARTISTS.find(a=>a.id===t.artistId)?.cover||""} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/></div>
                       <div style={{flex:1,minWidth:0}}>
                         <div style={{fontSize:12,fontWeight:600,color:track.id===t.id&&playing?C.accent:C.text,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" as const}}>{t.title}</div>
                         <div style={{fontSize:10,color:C.muted}}>{t.artist}</div>
@@ -301,7 +301,7 @@ playerRef.current.load();
                   </div>
                   <div style={{padding:"12px 14px"}}>
                     <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:10}}>
-                      <div style={{width:38,height:38,borderRadius:9,overflow:"hidden",flexShrink:0}}><img src={ARTISTS.find(a=>a.id===track.artistId)?.cover||""} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/></div>
+                      <div style={{width:38,height:38,borderRadius:9,overflow:"hidden",flexShrink:0}}><img src={track.cover||track.cover||ARTISTS.find(a=>a.id===track.artistId)?.cover||""} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/></div>
                       <div style={{flex:1,minWidth:0}}>
                         <div style={{fontSize:12,fontWeight:700,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" as const}}>{track.title}</div>
                         <div style={{fontSize:10,color:C.muted}}>{track.artist}</div>
