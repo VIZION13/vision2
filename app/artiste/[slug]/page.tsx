@@ -153,7 +153,7 @@ export default function ArtistPage() {
         </div>
 
         {/* PROFIL */}
-        <div style={{padding:"0 24px",marginTop:-40,marginBottom:24,display:"flex",alignItems:"flex-end",justifyContent:"space-between",flexWrap:"wrap",gap:16}}>
+        <div style={{padding:"0 24px",marginTop:-20,marginBottom:24,display:"flex",alignItems:"flex-end",justifyContent:"space-between",flexWrap:"wrap",gap:16}}>
           <div style={{display:"flex",alignItems:"flex-end",gap:16}}>
             <img src={artist.avatar} alt="" style={{width:90,height:90,borderRadius:18,objectFit:"cover",objectPosition:"center 30%",border:`3px solid ${C.bg}`,flexShrink:0}}/>
             <div style={{paddingBottom:4}}>
