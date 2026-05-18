@@ -148,14 +148,14 @@ export default function ArtistPage() {
 
         {/* BANNER */}
         <div style={{position:"relative",height:220,overflow:"hidden"}}>
-          <img src={artist.banner} alt="" style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"top",filter:"brightness(.5)"}}/>
+          <img src={artist.banner} alt="" style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center 20%",filter:"brightness(.45)"}}/>
           <div style={{position:"absolute",inset:0,background:"linear-gradient(to bottom,transparent 30%,rgba(13,13,15,1))"}}/>
         </div>
 
         {/* PROFIL */}
         <div style={{padding:"0 24px",marginTop:-60,marginBottom:24,display:"flex",alignItems:"flex-end",justifyContent:"space-between",flexWrap:"wrap",gap:16}}>
           <div style={{display:"flex",alignItems:"flex-end",gap:16}}>
-            <img src={artist.avatar} alt="" style={{width:90,height:90,borderRadius:18,objectFit:"cover",objectPosition:"top",border:`3px solid ${C.bg}`,flexShrink:0}}/>
+            <img src={artist.avatar} alt="" style={{width:90,height:90,borderRadius:18,objectFit:"cover",objectPosition:"center 30%",border:`3px solid ${C.bg}`,flexShrink:0}}/>
             <div style={{paddingBottom:4}}>
               <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
                 <span style={{fontFamily:"'Syne',sans-serif",fontWeight:900,fontSize:26}}>{artist.name}</span>
