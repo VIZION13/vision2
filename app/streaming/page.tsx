@@ -161,6 +161,7 @@ export default function Vizion2() {
     if(t.audio && playerRef.current){
       playerRef.current.pause();
       playerRef.current.src=t.audio;
+playerRef.current.load();
       playerRef.current.play().catch(()=>{});
       playerRef.current.ontimeupdate=()=>{ if(playerRef.current) setProg(Math.floor(playerRef.current.currentTime)); };
       playerRef.current.onended=()=>{setPlay(false);setProg(0);};
