@@ -635,9 +635,7 @@ playerRef.current.load();
               <div style={{height:"100%",width:`${(prog/track.duration)*100}%`,background:`linear-gradient(to right,${C.accent},${C.accent2})`,transition:"width .5s"}}/>
             </div>
           </div>
-          {!isMobile&&<div style={{width:110,display:"flex",alignItems:"center",gap:5,justifyContent:"flex-end",flexShrink:0}}><div style={{color:C.muted}}><IVol s={12}/></div><input type="range" min={0} max={1} step={.01} value={vol} onChange={e=>setVol(Number(e.target.value))} style={{width:60,background:`linear-gradient(to right,${C.accent} ${vol*100}%,${C.border} ${vol*100}%)`}}/></div>}
-        </div>
-      )}
+          {!isMobile&&<div style={{width:110,display:"flex",alignItems:"center",gap:5,justifyContent:"flex-end",flexShrink:0}}><div style={{color:C.muted}}><IVol s={12}/></div><input type="range" min={0} max={1} step={.01} value={vol} onChange={e=>{ const v=Number(e.target.value); setVol(v); if(playerRef.current) playerRef.current.volume=v; }}
 
       {/* MODAL AUTH */}
       {showAuth&&(
